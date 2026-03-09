@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionX | Guru Nanak Institutions</title>
+    <link rel="stylesheet" href="style.css?v=17">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo"><img src="photos/visionx logo.png" alt="VisionX Logo" class="logo-img"><span class="logo-text">Vision<span>X</span></span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#main-events">Events</a></li>
+                <li><a href="#pre-events">Pre-Events</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#countdown" class="btn-nav">Register Now</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle animate-fadeIn">VisionX Presents</p>
+            <h1 class="hero-title animate-fadeIn">Cultural Day Concert <br>&amp; HR Excellence 2026</h1>
+            <p class="hero-description animate-fadeIn">Experience the most exciting campus events</p>
+            <div class="hero-buttons animate-fadeIn">
+                <a href="#main-events" class="btn btn-primary">Explore Events</a>
+                <a href="#pre-events" class="btn btn-secondary">Pre-Events</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <p>Scroll Down</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Who We Are</span>
+                <h2 class="section-title">About VisionX</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>VisionX is a dynamic, student-driven club at Guru Nanak Institutions committed to creating impactful and memorable campus experiences. The club serves as a platform where students from diverse academic backgrounds come together to explore creativity, innovation, leadership, and collaboration.</p>
+                    <p>At its core, VisionX focuses on organizing engaging events, competitions, and showcases that encourage active participation and foster a vibrant campus culture. From technology-driven competitions and gaming tournaments to automobile showcases and cultural performances, VisionX creates opportunities that allow students to explore their interests beyond the classroom.</p>
+                </div>
+                <div class="about-image">
+                    <img src="photos/team img.png" alt="VisionX Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Events Section -->
+    <section id="main-events" class="main-events">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Highlights</span>
+                <h2 class="section-title">Main Events</h2>
+            </div>
+            <div class="events-grid">
+                <div class="event-card featured">
+                    <div class="event-image">
+                        <img src="photos/CONCERT.png" alt="Cultural Day Concert">
+                        <div class="event-date">
+                            <span class="day">10</span>
+                            <span class="month">APR</span>
+                        </div>
+                    </div>
+                    <div class="event-details">
+                        <span class="event-tag">Concert</span>
+                        <h3 class="event-title">Cultural Day Concert</h3>
+                        <p class="event-description">A grand celebration of music, dance, and student performances. The Cultural Day Concert showcases the vibrant talents of students and creates an unforgettable campus experience filled with entertainment and energy.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-calendar"></i> April 10, 2026</span>
+                            <span><i class="fas fa-map-marker-alt"></i> GNIT Open Grounds</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card featured">
+                    <div class="event-image">
+                        <img src="photos/hr.png" alt="HR Excellence & Networking">
+                        <div class="event-date">
+                            <span class="day">11</span>
+                            <span class="month">APR</span>
+                        </div>
+                    </div>
+                    <div class="event-details">
+                        <span class="event-tag">Professional Event</span>
+                        <h3 class="event-title">HR Excellence & Networking</h3>
+                        <p class="event-description">An interactive platform designed to connect students with industry professionals and HR leaders. This event focuses on networking, knowledge sharing, and exploring career opportunities.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-calendar"></i> April 11, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="events-cta">
+                <button class="btn btn-whatsapp pulse" onclick="openWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Get Your Pass</span>
+                    <div class="btn-shine"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Leads Section -->
+    <section id="team-leads" class="team-leads">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Team</span>
+                <h2 class="section-title">Meet Our Leads</h2>
+            </div>
+        </div>
+        <div class="leads-marquee">
+            <div class="leads-track">
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/rohan.jpg" alt="Event Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-calendar-check"></i> Event Lead</div>
+                        <h4 class="lead-name">Rohan Lingam</h4>
+                        <p class="lead-quote">"Making events memorable"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/Surya dubey.png" alt="Operations Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-cogs"></i> Operations Lead</div>
+                        <h4 class="lead-name">Surya Dubey</h4>
+                        <p class="lead-quote">"Executing with excellence"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/jason.jpg" alt="Cultural Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-music"></i> Cultural Lead</div>
+                        <h4 class="lead-name">Jason</h4>
+                        <p class="lead-quote">"Bringing art to life"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/faiz.jpg" alt="Marketing Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-bullhorn"></i> Marketing Lead</div>
+                        <h4 class="lead-name">Faiz Md</h4>
+                        <p class="lead-quote">"Spreading the word"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/Nithin.png" alt="Designing Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-palette"></i> Designing Lead</div>
+                        <h4 class="lead-name">Nithin</h4>
+                        <p class="lead-quote">"Creating visual magic"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/hareesh.jpeg" alt="Technical Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-code"></i> Technical Lead</div>
+                        <h4 class="lead-name">Hareesh</h4>
+                        <p class="lead-quote">"Building the future"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/aryan.jpg" alt="Content Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-pen"></i> Content Lead</div>
+                        <h4 class="lead-name">Aryan</h4>
+                        <p class="lead-quote">"Words that inspire"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/pranay.jpg" alt="Photography Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-camera"></i> Photography Lead</div>
+                        <h4 class="lead-name">Pranay</h4>
+                        <p class="lead-quote">"Capturing moments"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/akhil.jpg" alt="Logistics Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-truck"></i> Logistics Lead</div>
+                        <h4 class="lead-name">Akhil</h4>
+                        <p class="lead-quote">"Delivering excellence"</p>
+                    </div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/rohan.jpg" alt="Event Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-calendar-check"></i> Event Lead</div>
+                        <h4 class="lead-name">Rohan Lingam</h4>
+                        <p class="lead-quote">"Making events memorable"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/Surya dubey.png" alt="Operations Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-cogs"></i> Operations Lead</div>
+                        <h4 class="lead-name">Surya Dubey</h4>
+                        <p class="lead-quote">"Executing with excellence"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/jason.jpg" alt="Cultural Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-music"></i> Cultural Lead</div>
+                        <h4 class="lead-name">Jason</h4>
+                        <p class="lead-quote">"Bringing art to life"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/faiz.jpg" alt="Marketing Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-bullhorn"></i> Marketing Lead</div>
+                        <h4 class="lead-name">Faiz Md</h4>
+                        <p class="lead-quote">"Spreading the word"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/Nithin.png" alt="Designing Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-palette"></i> Designing Lead</div>
+                        <h4 class="lead-name">Nithin</h4>
+                        <p class="lead-quote">"Creating visual magic"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/hareesh.jpeg" alt="Technical Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-code"></i> Technical Lead</div>
+                        <h4 class="lead-name">Hareesh</h4>
+                        <p class="lead-quote">"Building the future"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/aryan.jpg" alt="Content Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-pen"></i> Content Lead</div>
+                        <h4 class="lead-name">Aryan</h4>
+                        <p class="lead-quote">"Words that inspire"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/pranay.jpg" alt="Photography Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-camera"></i> Photography Lead</div>
+                        <h4 class="lead-name">Pranay</h4>
+                        <p class="lead-quote">"Capturing moments"</p>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-photo">
+                        <img src="photos/akhil.jpg" alt="Logistics Lead">
+                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="lead-info">
+                        <div class="lead-role"><i class="fas fa-truck"></i> Logistics Lead</div>
+                        <h4 class="lead-name">Akhil</h4>
+                        <p class="lead-quote">"Delivering excellence"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Previous Events Gallery -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-play-circle"></i> Memories</span>
+                <h2 class="section-title">Previous Events</h2>
+                <p class="section-subtitle">Relive the magic of our past events</p>
+            </div>
+            <div class="reels-container">
+                <div class="reels-track">
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQMDs8T35wLWXaBsbONVx_VL3xAmJ-1zOSyp4oKJ-CkxrHEwznCXZWdATMh0V0-ILgqfRjFSpECe48U5c1oiCTyIk5CMjX-6FczPaII.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Event Highlights</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQMhFpnInzf2vvj3HLedgFfEApndWuenwP_JkgsYWarsWN0gzZ4PXS9UVlbTEu88fkCVYh-SB39DAwubrxrJ7kE51O7eoqjnTfzn478.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Campus Moments</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQMOGMuGhvBdHKtJCSVsXk5T_LS-5V1FUFgwsa3iG2P368pI8UJ1E840Rfk2RnqA7a8UDVVQj7zYDVU0VpL7qjvbxPpEIOrPecBaNio.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Celebrations</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQOPkrtCjpQLjgWZEC98WXGjGW_tKqJJc_9_ROws8ZAzqO58PA8GT0RoMwBt6aTD1qVCYx7C41BEHgP-y5-M-d4t1B_xjjToKXFnzx4.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Fun Times</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQPedUvuNbIz8sJfAFVTDFUpfGYwlwQ5mFF2z3AJ3HMc0_GFBugLYGvxxfZ6vH-r7LK6iT8ruVVb767616Vy9x8uiXD9jeYjCHLqtiM.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Memories</span>
+                        </div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQMDs8T35wLWXaBsbONVx_VL3xAmJ-1zOSyp4oKJ-CkxrHEwznCXZWdATMh0V0-ILgqfRjFSpECe48U5c1oiCTyIk5CMjX-6FczPaII.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Event Highlights</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQMhFpnInzf2vvj3HLedgFfEApndWuenwP_JkgsYWarsWN0gzZ4PXS9UVlbTEu88fkCVYh-SB39DAwubrxrJ7kE51O7eoqjnTfzn478.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Campus Moments</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQMOGMuGhvBdHKtJCSVsXk5T_LS-5V1FUFgwsa3iG2P368pI8UJ1E840Rfk2RnqA7a8UDVVQj7zYDVU0VpL7qjvbxPpEIOrPecBaNio.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Celebrations</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQOPkrtCjpQLjgWZEC98WXGjGW_tKqJJc_9_ROws8ZAzqO58PA8GT0RoMwBt6aTD1qVCYx7C41BEHgP-y5-M-d4t1B_xjjToKXFnzx4.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Fun Times</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video src="photos/SaveClip.App_AQPedUvuNbIz8sJfAFVTDFUpfGYwlwQ5mFF2z3AJ3HMc0_GFBugLYGvxxfZ6vH-r7LK6iT8ruVVb767616Vy9x8uiXD9jeYjCHLqtiM.mp4" muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Memories</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Events Section -->
+    <section id="pre-events" class="pre-events">
+        <div class="pre-events-bg"></div>
+        <div class="pre-events-decor decor-1"></div>
+        <div class="pre-events-decor decor-2"></div>
+        <div class="pre-events-particles"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-bolt"></i> Get Ready</span>
+                <h2 class="section-title">Pre-Events</h2>
+                <p class="section-subtitle">Build up the excitement with these amazing lead-up events!</p>
+            </div>
+        </div>
+            
+        <!-- Horizontal Scroll Container -->
+        <div class="pre-events-scroll-wrapper">
+            <button class="scroll-arrow scroll-left" aria-label="Scroll left" style="opacity: 0.3; pointer-events: none;">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="pre-events-scroll">
+                <!-- Esports Tournament -->
+                <div class="pre-event-card active" data-status="live">
+                    <div class="pre-event-image esports">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="pre-event-status live">
+                            <span class="status-dot"></span>
+                            Registration Open
+                        </div>
+                    </div>
+                    <div class="pre-event-body">
+                        <h3 class="pre-event-title">Esports Tournament</h3>
+                        <p class="pre-event-desc">Battle it out in the ultimate gaming showdown! Compete in popular titles and win exciting prizes.</p>
+                        <div class="pre-event-footer">
+                            <div class="pre-event-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>March 14, 2026</span>
+                            </div>
+                            <button class="btn-register" onclick="window.open('YOUR_GOOGLE_FORM_LINK','_blank')">
+                                Register <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Royal Enfield Showcase -->
+                <div class="pre-event-card next" data-status="coming">
+                    <div class="pre-event-image bike">
+                        <i class="fas fa-motorcycle"></i>
+                        <div class="pre-event-status coming">Coming Soon</div>
+                    </div>
+                    <div class="pre-event-body">
+                        <h3 class="pre-event-title">Royal Enfield Showcase</h3>
+                        <p class="pre-event-desc">Witness iconic motorcycles up close. Test rides, expert talks & exclusive merchandise!</p>
+                        <div class="pre-event-footer">
+                            <div class="pre-event-date">
+                                <i class="fas fa-clock"></i>
+                                <span>Date TBA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto Expo -->
+                <div class="pre-event-card next" data-status="coming">
+                    <div class="pre-event-image auto">
+                        <i class="fas fa-car"></i>
+                        <div class="pre-event-status coming">Coming Soon</div>
+                    </div>
+                    <div class="pre-event-body">
+                        <h3 class="pre-event-title">Auto Expo</h3>
+                        <p class="pre-event-desc">Explore the latest in automotive technology. From electric vehicles to concept cars!</p>
+                        <div class="pre-event-footer">
+                            <div class="pre-event-date">
+                                <i class="fas fa-clock"></i>
+                                <span>Date TBA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student of the Year -->
+                <div class="pre-event-card next" data-status="coming">
+                    <div class="pre-event-image student">
+                        <i class="fas fa-trophy"></i>
+                        <div class="pre-event-status coming">Coming Soon</div>
+                    </div>
+                    <div class="pre-event-body">
+                        <h3 class="pre-event-title">Student of the Year</h3>
+                        <p class="pre-event-desc">Celebrating excellence! Watch as top students compete for the prestigious title.</p>
+                        <div class="pre-event-footer">
+                            <div class="pre-event-date">
+                                <i class="fas fa-clock"></i>
+                                <span>Date TBA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flash Mob -->
+                <div class="pre-event-card next" data-status="coming">
+                    <div class="pre-event-image flashmob">
+                        <i class="fas fa-music"></i>
+                        <div class="pre-event-status coming">Coming Soon</div>
+                    </div>
+                    <div class="pre-event-body">
+                        <h3 class="pre-event-title">Flash Mob</h3>
+                        <p class="pre-event-desc">Join the surprise dance extravaganza! Be part of the viral moment across campus.</p>
+                        <div class="pre-event-footer">
+                            <div class="pre-event-date">
+                                <i class="fas fa-clock"></i>
+                                <span>Date TBA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="scroll-arrow scroll-right" aria-label="Scroll right">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- Scroll Indicators -->
+        <div class="scroll-indicators">
+            <span class="scroll-dot active"></span>
+            <span class="scroll-dot"></span>
+            <span class="scroll-dot"></span>
+            <span class="scroll-dot"></span>
+            <span class="scroll-dot"></span>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown">
+        <div class="countdown-overlay"></div>
+        <div class="container">
+            <div class="countdown-content">
+                <span class="countdown-tag">Mark Your Calendar</span>
+                <h2 class="countdown-title">Cultural Day Concert Begins In</h2>
+                <div class="countdown-timer">
+                    <div class="time-block">
+                        <span id="days" class="time-value">00</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-block">
+                        <span id="hours" class="time-value">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-block">
+                        <span id="minutes" class="time-value">00</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-block">
+                        <span id="seconds" class="time-value">00</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+                <p class="countdown-date"><i class="fas fa-calendar-alt"></i> April 10, 2026 | 5:00 PM</p>
+                <button class="btn btn-primary btn-large" onclick="openWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Reserve Your Spot
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo"><img src="photos/visionx logo.png" alt="VisionX Logo" class="footer-logo-img"><span class="logo-text">Vision<span>X</span></span></div>
+                    <p>Creating Extraordinary Campus Experiences</p>
+                    <p class="footer-college">Guru Nanak Institutions</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#main-events">Events</a></li>
+                        <li><a href="#pre-events">Pre-Events</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> visionx@gni.edu</p>
+                    <p><i class="fas fa-phone"></i> +91 93463 15298</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Guru Nanak Institutions, Hyderabad</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/visionx_gni?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VisionX Club, Guru Nanak Institutions. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
