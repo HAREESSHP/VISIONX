@@ -1288,6 +1288,16 @@ section {
     transition: var(--transition);
 }
 
+.role-founder {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4) !important;
+}
+
+.lead-card:hover .role-founder {
+    background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%) !important;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6) !important;
+}
+
 .lead-card:hover .lead-role {
     background: #E65100;
 }
