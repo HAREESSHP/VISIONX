@@ -273,7 +273,7 @@ window.addEventListener('scroll', function () {
    ============================================ */
 function openWhatsApp() {
     const phoneNumber = '919346315298';
-    const message = 'Hi! I would like to register for VisionX Events (Cultural Day Concert & HR Excellence) on April 04 & 17, 2026.';
+    const message = 'Hi! I would like to register for VisionX Event (Cultural Day Concert) on April 04, 2026.';
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
