@@ -163,7 +163,7 @@ app.post('/api/verify-payment', async (req, res) => {
     res.json({ success: true, ticketId: ticket.ticketId });
   } catch (err) {
     console.error('verify-payment error:', err);
-    res.status(500).json({ error: 'Payment verification failed' });
+    res.status(500).json({ error: 'Error: ' + err.message });
   }
 });
 
