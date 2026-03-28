@@ -16,12 +16,11 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-container"> 
             <a href="#" class="logo"><img src="photos/visionx logo.png" alt="VisionX Logo" class="logo-img"></a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#main-events">Events</a></li>
-                <li><a href="#pre-events">Pre-Events</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#countdown" class="btn-nav">Register Now</a></li>
             </ul>
@@ -42,7 +41,7 @@
             <p class="hero-description animate-fadeIn">Experience the most exciting campus events</p>
             <div class="hero-buttons animate-fadeIn">
                 <a href="#main-events" class="btn btn-primary">Explore Events</a>
-                <a href="#pre-events" class="btn btn-secondary">Pre-Events</a>
+                <a href="#auto-expo" class="btn btn-secondary">Pre-Events</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -104,33 +103,53 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Esports Tournament added as main event -->
-                <div class="event-card featured">
-                    <div class="event-image">
-                        <img src="photos/esports.png" alt="RETRO REWIND">
-                        <div class="event-date">
-                            <span class="day">25</span>
-                            <span class="month">MAR</span>
-                        </div>
+    <!-- Auto Expo Pre-Event Section -->
+    <section id="auto-expo" class="auto-expo-section">
+        <div class="auto-expo-bg"></div>
+        <div class="auto-expo-glow glow-1"></div>
+        <div class="auto-expo-glow glow-2"></div>
+        <div class="container">
+            <div class="auto-expo-inner">
+
+                <!-- Left: Trailer Video -->
+                <div class="auto-expo-media">
+                    <div class="auto-expo-video-wrapper">
+                        <video
+                            src="photos/AUTOEXPO TRAILER.mp4"
+                            autoplay muted loop playsinline
+                            class="auto-expo-video"
+                            id="autoExpoVideo">
+                        </video>
+                        <!-- Mute / Unmute toggle -->
+                        <button class="video-mute-btn" id="autoExpoMuteBtn" onclick="toggleAutoExpoMute()" title="Toggle sound">
+                            <i class="fas fa-volume-mute" id="autoExpoMuteIcon"></i>
+                        </button>
+                        <!-- Corner shine sweep -->
+                        <div class="video-shine"></div>
+                        <!-- Bottom gradient fade -->
+                        <div class="video-fade-bottom"></div>
                     </div>
-                    <div class="event-details">
-                        <span class="event-tag" style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);">Esports & Gaming</span>
-                        <h3 class="event-title">RETRO REWIND</h3>
-                        <p class="event-description">Step back in time and relive the classics! Join us for RETRO REWIND in Guru Gobind Singh Auditorium. Experience nostalgic games, music, and vibes. Exciting prizes await!</p>
-                        <div class="event-meta">
-                            <span><i class="fas fa-calendar"></i> March 25, 2026</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Guru Gobind Singh Auditorium</span>
-                        </div>
-                        <div class="events-cta" style="margin-top: 15px; text-align: left;">
-                            <button class="btn btn-whatsapp pulse" onclick="window.open('https://forms.gle/hoBs5eMdp8tevpa59', '_blank')" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);">
-                                <span>Register Now</span>
-                                <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-                                <div class="btn-shine"></div>
-                            </button>
-                        </div>
+                    <div class="auto-expo-badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Next Up</span>
                     </div>
                 </div>
+
+                <!-- Right: Content -->
+                <div class="auto-expo-content">
+                    <span class="auto-expo-tag"><i class="fas fa-flag-checkered"></i> Pre-Event</span>
+                    <h2 class="auto-expo-title">Auto <span class="auto-expo-highlight">Expo</span></h2>
+                    <p class="auto-expo-desc">
+                        Rev up your engines! VisionX presents the ultimate campus Auto Expo — a thrilling showcase
+                        of roaring machines, stunning two-wheelers, and cutting-edge vehicles. Experience the power,
+                        design, and innovation of the automobile world, right on campus.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -471,6 +490,22 @@
                             <span class="reel-title">Memories</span>
                         </div>
                     </div>
+                    <div class="reel-item">
+                        <video
+                            src="photos/retero rewind 1.mp4"
+                            muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Retro Rewind</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video
+                            src="photos/retero rewind 2.mp4"
+                            muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Retro Rewind Highlights</span>
+                        </div>
+                    </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="reel-item">
                         <video
@@ -512,82 +547,27 @@
                             <span class="reel-title">Memories</span>
                         </div>
                     </div>
+                    <div class="reel-item">
+                        <video
+                            src="photos/retero rewind 1.mp4"
+                            muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Retro Rewind</span>
+                        </div>
+                    </div>
+                    <div class="reel-item">
+                        <video
+                            src="photos/retero rewind 2.mp4"
+                            muted loop playsinline autoplay></video>
+                        <div class="reel-overlay">
+                            <span class="reel-title">Retro Rewind Highlights</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pre-Events Section -->
-    <section id="pre-events" class="pre-events">
-        <div class="pre-events-bg"></div>
-        <div class="pre-events-decor decor-1"></div>
-        <div class="pre-events-decor decor-2"></div>
-        <div class="pre-events-particles"></div>
-        <div class="container">
-
-        </div>
-
-        <!-- Horizontal Scroll Container -->
-        <div class="pre-events-scroll-wrapper">
-            <button class="scroll-arrow scroll-left" aria-label="Scroll left"
-                style="opacity: 0.3; pointer-events: none;">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            <div class="pre-events-scroll">
-                <!-- Auto Expo -->
-                <div class="pre-event-card active" data-status="coming">
-                    <div class="pre-event-image auto">
-                        <i class="fas fa-car"></i>
-                        <div class="pre-event-status coming">Coming Soon</div>
-                    </div>
-                    <div class="pre-event-body">
-                        <h3 class="pre-event-title">Auto Expo</h3>
-                        <p class="pre-event-desc">Explore the latest in automotive technology. From electric vehicles to
-                            concept cars!</p>
-                        <div class="pre-event-footer">
-                            <div class="pre-event-date">
-                                <i class="fas fa-clock"></i>
-                                <span>Date TBA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Flash Mob -->
-                <div class="pre-event-card next" data-status="coming">
-                    <div class="pre-event-image flashmob">
-                        <i class="fas fa-music"></i>
-                        <div class="pre-event-status coming">Coming Soon</div>
-                    </div>
-                    <div class="pre-event-body">
-                        <h3 class="pre-event-title">Flash Mob</h3>
-                        <p class="pre-event-desc">Join the surprise dance extravaganza! Be part of the viral moment
-                            across campus.</p>
-                        <div class="pre-event-footer">
-                            <div class="pre-event-date">
-                                <i class="fas fa-clock"></i>
-                                <span>Date TBA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="scroll-arrow scroll-right" aria-label="Scroll right">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <!-- Scroll Indicators -->
-        <div class="scroll-indicators">
-            <span class="scroll-dot active"></span>
-            <span class="scroll-dot"></span>
-            <span class="scroll-dot"></span>
-            <span class="scroll-dot"></span>
-            <span class="scroll-dot"></span>
-        </div>
-    </section>
 
     <!-- Countdown Section -->
     <section id="countdown" class="countdown">

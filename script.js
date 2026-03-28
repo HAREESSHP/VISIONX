@@ -422,3 +422,15 @@ window.addEventListener('scroll', function () {
         }
     });
 });
+
+/* ============================================
+   Auto Expo Video — Mute Toggle
+   ============================================ */
+function toggleAutoExpoMute() {
+    const video = document.getElementById('autoExpoVideo');
+    const icon  = document.getElementById('autoExpoMuteIcon');
+    if (!video) return;
+
+    video.muted = !video.muted;
+    icon.className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+}
