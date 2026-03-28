@@ -145,18 +145,49 @@ ul {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.nav-links a:hover {
-    color: #ffffff;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-}
-
-.navbar.scrolled .nav-links a {
-    color: var(--text-secondary);
-    text-shadow: none;
-}
-
 .navbar.scrolled .nav-links a:hover {
     color: var(--text-primary);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2.5px;
+    background: #ffffff;
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.navbar.scrolled .hamburger span {
+    background: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: #0a0a14;
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.4s ease;
+        z-index: 1001;
+    }
+    .nav-links.active { right: 0; }
+    .nav-links a { font-size: 1.2rem; }
 }
 
 .nav-links a:not(.btn-nav)::after {
@@ -191,25 +222,6 @@ ul {
     background: #E65C00;
     transform: translateY(-2px);
     box-shadow: var(--shadow-glow);
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: #ffffff;
-    border-radius: 3px;
-    transition: var(--transition);
-}
-
-.navbar.scrolled .hamburger span {
-    background: var(--text-primary);
 }
 
 /* ============================================
@@ -263,6 +275,11 @@ ul {
     margin-bottom: 30px;
     color: #ffffff;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .hero-title { font-size: 3rem; }
+    .hero-subtitle { font-size: 1.1rem; letter-spacing: 2px; }
 }
 
 .hero-description {
@@ -443,6 +460,12 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+}
+
+@media (max-width: 900px) {
+    .about-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .about-image { order: -1; }
+    .about-stats { justify-content: center; }
 }
 
 .about-text p {
