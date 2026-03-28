@@ -430,7 +430,140 @@ function toggleAutoExpoMute() {
     const video = document.getElementById('autoExpoVideo');
     const icon  = document.getElementById('autoExpoMuteIcon');
     if (!video) return;
-
     video.muted = !video.muted;
     icon.className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
 }
+
+/* ============================================
+   Ticket Modal — Open / Close
+   ============================================ */
+function openTicketModal() {
+    const modal = document.getElementById('ticketModal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Reset to form step
+    showTktStep('form');
+    document.getElementById('tkt-error').textContent = '';
+    document.getElementById('ticketForm').reset();
+}
+
+function closeTicketModal(e) {
+    // Only close if clicking the overlay backdrop itself
+    if (e.target === document.getElementById('ticketModal')) {
+        closeTicketModalForce();
+    }
+}
+
+function closeTicketModalForce() {
+    document.getElementById('ticketModal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function showTktStep(step) {
+    document.getElementById('tkt-step-form').style.display       = step === 'form'       ? 'block' : 'none';
+    document.getElementById('tkt-step-processing').style.display = step === 'processing' ? 'block' : 'none';
+    document.getElementById('tkt-step-success').style.display    = step === 'success'    ? 'block' : 'none';
+}
+
+/* ============================================
+   Ticket Form Submit — Create Order → Razorpay
+   ============================================ */
+async function handleTicketSubmit(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('tkt-submit-btn');
+    const errEl = document.getElementById('tkt-error');
+    errEl.textContent = '';
+
+    const payload = {
+        name:       document.getElementById('f-name').value.trim(),
+        rollno:     document.getElementById('f-rollno').value.trim(),
+        email:      document.getElementById('f-email').value.trim(),
+        phone:      document.getElementById('f-phone').value.trim(),
+        college:    document.getElementById('f-college').value.trim(),
+        department: document.getElementById('f-dept').value.trim()
+    };
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating order…';
+
+    try {
+        // 1. Create Razorpay order on backend
+        const res  = await fetch('/api/create-order', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Order creation failed');
+
+        // 2. Open Razorpay checkout
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Proceed to Pay ₹1';
+
+        const options = {
+            key:         data.key,
+            amount:      data.amount,
+            currency:    'INR',
+            name:        'VisionX Events',
+            description: 'Cultural Day Concert 2026 — Entry Ticket',
+            order_id:    data.orderId,
+            prefill: {
+                name:    payload.name,
+                email:   payload.email,
+                contact: payload.phone
+            },
+            theme: { color: '#6366f1' },
+            modal: {
+                ondismiss: function () {
+                    showTktStep('form');
+                }
+            },
+            handler: async function (response) {
+                // 3. Payment successful → verify on backend
+                showTktStep('processing');
+                try {
+                    const vRes = await fetch('/api/verify-payment', {
+                        method:  'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            razorpay_order_id:   response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature:  response.razorpay_signature,
+                            ticketId:            data.ticketId
+                        })
+                    });
+                    const vData = await vRes.json();
+                    if (!vRes.ok) throw new Error(vData.error || 'Verification failed');
+
+                    // 4. Show success
+                    document.getElementById('tkt-success-id').textContent = vData.ticketId;
+                    document.getElementById('tkt-success-email-msg').innerHTML = `Your ticket has been sent to <strong>${payload.email}</strong>.<br>Check your inbox for the QR code.`;
+                    showTktStep('success');
+
+                } catch (err) {
+                    showTktStep('form');
+                    errEl.textContent = '⚠️ ' + err.message;
+                }
+            }
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+            showTktStep('form');
+            errEl.textContent = '❌ Payment failed: ' + response.error.description;
+        });
+        rzp.open();
+
+    } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Proceed to Pay ₹1';
+        errEl.textContent = '⚠️ ' + err.message;
+    }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeTicketModalForce();
+});

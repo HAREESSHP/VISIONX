@@ -22,7 +22,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#main-events">Events</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#countdown" class="btn-nav">Register Now</a></li>
+                <li><a href="javascript:void(0)" onclick="openTicketModal()" class="btn-nav">Register Now</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -598,8 +598,8 @@
                     </div>
                 </div>
                 <p class="countdown-date"><i class="fas fa-calendar-alt"></i> April 04, 2026 | 5:00 PM</p>
-                <button class="btn btn-primary btn-large" onclick="openWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> Reserve Your Spot
+                <button class="btn btn-primary btn-large" id="buyTicketBtn" onclick="openTicketModal()">
+                    <i class="fas fa-ticket-alt"></i> Buy Ticket — ₹1
                 </button>
             </div>
         </div>
@@ -620,7 +620,7 @@
                     <ul>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#main-events">Events</a></li>
-                        <li><a href="#pre-events">Pre-Events</a></li>
+                        <li><a href="#auto-expo">Pre-Events</a></li>
                         <li><a href="#gallery">Gallery</a></li>
                     </ul>
                 </div>
@@ -648,6 +648,81 @@
         </div>
     </footer>
 
+    <!-- ══ TICKET MODAL ══════════════════════════════════════════ -->
+    <div id="ticketModal" class="tkt-overlay" onclick="closeTicketModal(event)">
+      <div class="tkt-box">
+
+        <!-- Step 1: Form -->
+        <div id="tkt-step-form">
+          <button class="tkt-close" onclick="closeTicketModalForce()"><i class="fas fa-times"></i></button>
+          <div class="tkt-header">
+            <div class="tkt-icon-ring"><i class="fas fa-ticket-alt"></i></div>
+            <h2>Buy Your Ticket</h2>
+            <p>Cultural Day Concert 2026 &nbsp;|&nbsp; ₹1</p>
+          </div>
+          <form id="ticketForm" onsubmit="handleTicketSubmit(event)">
+            <div class="tkt-grid">
+              <div class="tkt-field">
+                <label>Full Name *</label>
+                <input type="text" id="f-name" placeholder="Your full name" required>
+              </div>
+              <div class="tkt-field">
+                <label>Email ID *</label>
+                <input type="email" id="f-email" placeholder="youremail@gmail.com" required>
+              </div>
+              <div class="tkt-field">
+                <label>Phone Number *</label>
+                <input type="tel" id="f-phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+              </div>
+              <div class="tkt-field">
+                <label>Roll No *</label>
+                <input type="text" id="f-rollno" placeholder="Your roll number" required>
+              </div>
+              <div class="tkt-field">
+                <label>College / Institution *</label>
+                <input type="text" id="f-college" placeholder="Your college name" required>
+              </div>
+              <div class="tkt-field tkt-full">
+                <label>Department *</label>
+                <input type="text" id="f-dept" placeholder="e.g. CSE, ECE, MBA..." required>
+              </div>
+            </div>
+            <div class="tkt-info-row">
+              <i class="fas fa-shield-alt"></i>
+              Payments secured by Razorpay. You will receive an email with your QR ticket.
+            </div>
+            <button type="submit" class="tkt-pay-btn" id="tkt-submit-btn">
+              <i class="fas fa-lock"></i> Proceed to Pay ₹1
+            </button>
+            <p class="tkt-error" id="tkt-error"></p>
+          </form>
+        </div>
+
+        <!-- Step 2: Processing -->
+        <div id="tkt-step-processing" style="display:none">
+          <div class="tkt-centered">
+            <div class="tkt-spinner"></div>
+            <h3>Processing Payment…</h3>
+            <p>Please do not close this window.</p>
+          </div>
+        </div>
+
+        <!-- Step 3: Success -->
+        <div id="tkt-step-success" style="display:none">
+          <div class="tkt-centered">
+            <div class="tkt-success-icon"><i class="fas fa-check"></i></div>
+            <h3>Ticket Confirmed! 🎉</h3>
+            <p id="tkt-success-email-msg">Your ticket has been sent to your email.<br>Check your inbox for the QR code.</p>
+            <div class="tkt-tid" id="tkt-success-id"></div>
+            <button class="tkt-pay-btn" style="margin-top:24px" onclick="closeTicketModalForce()">Done</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- ══ END TICKET MODAL ══════════════════════════════════════ -->
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="script.js"></script>
 </body>
 

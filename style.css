@@ -2942,6 +2942,13 @@ section {
         padding: 100px 40px;
         gap: 25px;
         transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+
+    .nav-links a:not(.btn-nav) {
+        color: var(--text-primary) !important;
+        text-shadow: none !important;
+        font-size: 1.1rem;
     }
 
     .nav-links.active {
@@ -2951,6 +2958,10 @@ section {
     .hamburger {
         display: flex;
         z-index: 1001;
+    }
+
+    .hamburger.active span {
+        background: var(--text-primary) !important;
     }
 
     .hamburger.active span:nth-child(1) {
@@ -2997,6 +3008,17 @@ section {
 
     .time-value {
         font-size: 2rem;
+    }
+
+    .director-name {
+        font-size: 2.2rem !important;
+    }
+    .director-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .d-stat {
+        padding: 15px;
     }
 
     .time-separator {
@@ -3245,6 +3267,13 @@ section {
         font-size: 1.8rem;
     }
 
+    .event-card.featured .event-title {
+        font-size: 2rem;
+    }
+    .event-card.featured .event-details {
+        padding: 30px 20px;
+    }
+
     /* Team leads - tighter on small phones */
     .leads-track {
         grid-template-columns: repeat(2, 1fr);
@@ -3305,8 +3334,167 @@ section {
 }
 
 /* ============================================
-   Auto Expo Pre-Event Section
+   Ticket Modal
    ============================================ */
+.tkt-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.tkt-overlay.open { display: flex; }
+
+.tkt-box {
+    background: #12122a;
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 540px;
+    width: 100%;
+    border: 1px solid rgba(99,102,241,0.3);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    position: relative;
+    animation: tktSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes tktSlideIn {
+    from { opacity:0; transform: scale(0.85) translateY(30px); }
+    to   { opacity:1; transform: scale(1) translateY(0); }
+}
+
+.tkt-close {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 36px; height: 36px;
+    border-radius: 50%; border: none;
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+}
+.tkt-close:hover { background: rgba(239,68,68,0.2); color: #ef4444; }
+
+.tkt-header { text-align: center; margin-bottom: 28px; }
+.tkt-icon-ring {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #ec4899);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: #fff; margin: 0 auto 16px;
+    box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+}
+.tkt-header h2 { font-size: 1.5rem; font-weight: 800; color: #fff; }
+.tkt-header p  { color: rgba(255,255,255,0.5); font-size: .88rem; margin-top: 6px; }
+
+.tkt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.tkt-full { grid-column: 1 / -1; }
+
+.tkt-field label {
+    display: block;
+    color: rgba(255,255,255,0.55);
+    font-size: .78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+.tkt-field input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 13px 16px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: .9rem;
+    outline: none;
+    transition: border-color .25s, box-shadow .25s;
+}
+.tkt-field input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+.tkt-field input::placeholder { color: rgba(255,255,255,0.25); }
+
+.tkt-info-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 12px; padding: 12px 16px;
+    color: rgba(255,255,255,0.5); font-size: .8rem;
+    line-height: 1.6; margin-bottom: 20px;
+}
+.tkt-info-row i { color: #6366f1; margin-top: 2px; flex-shrink: 0; }
+
+.tkt-pay-btn {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, #6366f1, #ec4899);
+    color: #fff; border: none; border-radius: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all .3s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    box-shadow: 0 8px 25px rgba(99,102,241,0.35);
+}
+.tkt-pay-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(99,102,241,0.45); }
+.tkt-pay-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+.tkt-error {
+    color: #ef4444; font-size: .82rem;
+    text-align: center; margin-top: 10px; min-height: 20px;
+}
+
+/* Processing & Success centered states */
+.tkt-centered { text-align: center; padding: 40px 20px; }
+.tkt-centered h3 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 20px 0 10px; }
+.tkt-centered p  { color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+.tkt-spinner {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top-color: #6366f1;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.tkt-success-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #059669);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; color: #fff; margin: 0 auto;
+    box-shadow: 0 8px 30px rgba(16,185,129,0.4);
+    animation: successPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes successPop {
+    from { transform: scale(0); opacity:0; }
+    to   { transform: scale(1); opacity:1; }
+}
+
+.tkt-tid {
+    font-size: 1.2rem; font-weight: 800; color: #f97316;
+    background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3);
+    border-radius: 12px; padding: 12px 24px; margin-top: 20px;
+    font-family: monospace; letter-spacing: 2px;
+}
+
+@media (max-width: 500px) {
+    .tkt-grid { grid-template-columns: 1fr; }
+    .tkt-box  { padding: 28px 20px; }
+}
+
+
 .auto-expo-section {
     position: relative;
     padding: 100px 0;
