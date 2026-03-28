@@ -213,6 +213,40 @@ app.get('/api/admin/stats', requireAdmin, async (req, res) => {
   res.json({ paid, scanned, pending, revenue: paid * 1 });
 });
 
+/* =============================================
+   ROUTE: POST /api/admin/approve-ticket
+   Admin manual override to approve a ticket
+   ============================================= */
+app.post('/api/admin/approve-ticket', requireAdmin, async (req, res) => {
+  try {
+    const { ticketId } = req.body;
+    const ticket = await Ticket.findOneAndUpdate(
+      { ticketId, status: 'pending' },
+      { status: 'paid', paymentId: 'Manual Admin Approval' },
+      { new: true }
+    );
+
+    if (!ticket) return res.status(404).json({ error: 'Pending ticket not found' });
+
+    // Generate QR Content
+    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    const qrDataUrl = await QRCode.toDataURL(qrContent, {
+      errorCorrectionLevel: 'H',
+      margin: 2,
+      width:  320,
+      color:  { dark: '#1a1a2e', light: '#ffffff' }
+    });
+
+    // Send Mail
+    await sendTicketEmail(ticket, qrDataUrl);
+
+    res.json({ success: true, ticket });
+  } catch (err) {
+    console.error('Manual approval error:', err);
+    res.status(500).json({ error: 'Approval failed: ' + err.message });
+  }
+});
+
 // ── Admin auth middleware ──────────────────────
 function requireAdmin(req, res, next) {
   if (req.headers['x-admin-key'] !== process.env.ADMIN_KEY) {
