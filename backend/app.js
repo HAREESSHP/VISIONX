@@ -147,14 +147,8 @@ app.post('/api/verify-payment', async (req, res) => {
 
     if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
 
-    // Generate QR code containing ticket details for generic scanners + verify link
-    const qrContent = `VisionX Event Pass
-Name: ${ticket.name}
-Roll No: ${ticket.rollno}
-Ticket ID: ${ticket.ticketId}
-
-Verify Link:
-${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    // Generate QR code containing only the verification link so scanners automatically open the ticket info page
+    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrContent, {
       errorCorrectionLevel: 'H',
@@ -379,8 +373,14 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0a0a14,
 
 // ── Start Server ──────────────────────────────
 const PORT = process.env.PORT || 5500;
-app.listen(PORT, () => {
-  console.log(`\n🚀  VisionX Server → http://localhost:${PORT}`);
-  console.log(`🎟  Ticket scan  → http://localhost:${PORT}/ticket/:id`);
-  console.log(`🛡  Admin panel  → http://localhost:${PORT}/admin\n`);
-});
+// Only listen fully when NOT running in Serverless/Vercel environments
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`\n🚀  VisionX Server → http://localhost:${PORT}`);
+    console.log(`🎟  Ticket scan  → http://localhost:${PORT}/ticket/:id`);
+    console.log(`🛡  Admin panel  → http://localhost:${PORT}/admin\n`);
+  });
+}
+
+// Export the app for Vercel serverless functions
+module.exports = app;
