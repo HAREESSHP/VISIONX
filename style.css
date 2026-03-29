@@ -342,6 +342,62 @@ ul {
     font-size: 1.1rem;
 }
 
+/* Event Registration Button Special Style */
+.btn-event-reg {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8E3C 100%);
+    color: white;
+    width: 100%;
+    padding: 18px 25px;
+    border-radius: 16px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 25px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 25px rgba(255, 107, 0, 0.25);
+    font-family: inherit;
+}
+
+.btn-event-reg i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-event-reg:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 35px rgba(255, 107, 0, 0.35);
+}
+
+.btn-event-reg:hover i {
+    transform: scale(1.2) rotate(-10deg);
+}
+
+.btn-event-reg:active {
+    transform: scale(0.98);
+}
+
+.btn-event-reg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-event-reg:hover::before {
+    left: 100%;
+}
+
 /* Scroll Indicator */
 .scroll-indicator {
     position: absolute;

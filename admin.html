@@ -135,18 +135,18 @@
       padding:5px 14px; border-radius:50px; font-size:.78rem; font-weight:700;
     }
     .badge.paid    { background:rgba(16,185,129,0.15); color:#10b981; border:1px solid rgba(16,185,129,0.3); }
-    .badge.pending { background:rgba(249,115,22,0.15);  color:#f97316; border:1px solid rgba(249,115,22,0.3); }
-    .badge.failed  { background:rgba(239,68,68,0.15);   color:#ef4444; border:1px solid rgba(239,68,68,0.3); }
-    .badge.scanned { background:rgba(99,102,241,0.15);  color:#a5b4fc; border:1px solid rgba(99,102,241,0.3); }
+    .badge.INITIATED, .badge.pending { background:rgba(217,119,6,0.15); border:1px solid rgba(217,119,6,0.3); color:#fbbf24; }
+    .badge.PAID_PENDING_TICKET { background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; }
+    .badge.COMPLETED, .badge.paid { background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); color:#34d399; }
+    .badge.scanned { background:rgba(99,102,241,0.2); border:1px solid rgba(99,102,241,0.4); color:#a5b4fc; }
     .empty { text-align:center; padding:60px 20px; color:var(--muted); }
     .loading { text-align:center; padding:60px 20px; color:var(--muted); }
 
     .approve-btn {
-      background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4);
-      color:#10b981; padding:6px 14px; border-radius:8px; display:inline-flex; align-items:center; gap:6px;
-      font-family:inherit; font-size:.78rem; font-weight:700; cursor:pointer; transition:.3s; cursor:pointer;
+      background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.35);
+      color:#10b981; padding:7px 14px; border-radius:8px; font-weight:600; cursor:pointer; font-size:.78rem;
     }
-    .approve-btn:hover { background:rgba(16,185,129,0.3); }
+    .approve-btn:hover { background:rgba(16,185,129,0.25); }
     .approve-btn:disabled { opacity:0.5; cursor:not-allowed; }
 
     .delete-btn {
@@ -396,18 +396,18 @@
         <td style="color:rgba(255,255,255,0.4);font-size:.8rem;font-family:monospace">${t.paymentId || '—'}</td>
         <td>
           <span class="badge ${t.status}">
-            ${t.status === 'COMPLETED' ? 'SUCCESS' : (t.status === 'PAID_PENDING_TICKET' ? 'PAID (ERR)' : t.status)}
+            ${(t.status === 'COMPLETED' || t.status === 'paid') ? 'SUCCESS' : (t.status === 'PAID_PENDING_TICKET' ? 'PAID (ERR)' : (t.status === 'INITIATED' || t.status === 'pending' ? 'INITIATED' : t.status))}
           </span>
         </td>
         <td>${t.scanned ? '<span class="badge scanned">SCANNED</span>' : '<span style="color:rgba(255,255,255,0.3)">—</span>'}</td>
         <td style="color:rgba(255,255,255,0.4);font-size:.82rem">${new Date(t.createdAt).toLocaleDateString('en-IN', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</td>
         <td>
-          <div style="display:flex; gap:8px; align-items:center;">
-            ${(t.status === 'INITIATED' || t.status === 'pending')
-              ? `<button class="approve-btn" title="Approve & Send Ticket" onclick="approveTicket('${t.ticketId}', this)"><i class="fas fa-check"></i></button>`
-              : `<button class="resend-btn" title="Resend Email" onclick="resendEmail('${t.ticketId}', this)"><i class="fas fa-envelope"></i></button>`}
-            <button class="delete-btn" title="Delete Registration" onclick="deleteTicket('${t.ticketId}')"><i class="fas fa-trash-alt"></i></button>
-          </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              ${(t.status === 'INITIATED' || t.status === 'pending')
+                ? `<button class="approve-btn" title="Manual Approve & Send Mail" onclick="approveTicket('${t.ticketId}', this)"><i class="fas fa-check-circle"></i> Approve</button>`
+                : `<button class="resend-btn" title="Resend Ticket Mail" onclick="resendEmail('${t.ticketId}', this)"><i class="fas fa-envelope"></i> Resend</button>`}
+              <button class="delete-btn" title="Permanently Delete" onclick="deleteTicket('${t.ticketId}')"><i class="fas fa-trash-alt"></i></button>
+            </div>
         </td>
       </tr>`).join('');
   }
@@ -635,14 +635,7 @@
         <div class="input-group"><input type="text" id="m-roll" placeholder="Roll No (e.g. 21X...)"></div>
         <div class="input-group"><input type="email" id="m-email" placeholder="Email Address"></div>
         <div class="input-group"><input type="text" id="m-phone" placeholder="Mobile Number"></div>
-        <div class="input-group">
-          <select id="m-college" style="width:100%;padding:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;">
-            <option value="GNIT">GNIT</option>
-            <option value="GNIITC">GNIITC</option>
-            <option value="GIPS">GIPS</option>
-            <option value="OTHER">Other</option>
-          </select>
-        </div>
+        <div class="input-group"><input type="text" id="m-college" placeholder="College Name (e.g. GNIT)"></div>
         <div class="input-group"><input type="text" id="m-dep" placeholder="Department (e.g. CSE-AI&ML)"></div>
         <button class="register-btn" id="m-submit" onclick="submitManualEntry()" style="margin-top:10px">Create & Send Ticket</button>
       </div>

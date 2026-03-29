@@ -21,14 +21,20 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..')));   // serve frontend
 
-// ── MongoDB Connection ────────────────────────
-mongoose.connect(process.env.MONGODB_URI)
-  .then(async () => {
-    console.log('✅  MongoDB connected');
-    await Ticket.syncIndexes();
-    console.log('✅  MongoDB indexes synced');
-  })
-  .catch(err => console.error('❌  MongoDB error:', err));
+// ── MongoDB Optimization for Vercel ───────────
+let cachedDb = null;
+async function connectToDatabase() {
+  if (cachedDb) return cachedDb;
+  const db = await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000
+  });
+  console.log('✅ MongoDB Connected');
+  cachedDb = db;
+  return db;
+}
+connectToDatabase().catch(err => console.error('❌ DB Error:', err));
 
 // ── Ticket Schema ─────────────────────────────
 const ticketSchema = new mongoose.Schema({
@@ -213,9 +219,9 @@ app.get('/api/admin/tickets', requireAdmin, async (req, res) => {
    ============================================= */
 app.get('/api/admin/stats', requireAdmin, async (req, res) => {
   const [completed, scanned, initiated, paidPending] = await Promise.all([
-    Ticket.countDocuments({ status: 'COMPLETED' }),
+    Ticket.countDocuments({ status: { $in: ['COMPLETED', 'paid'] } }),
     Ticket.countDocuments({ scanned: true }),
-    Ticket.countDocuments({ status: 'INITIATED' }),
+    Ticket.countDocuments({ status: { $in: ['INITIATED', 'pending'] } }),
     Ticket.countDocuments({ status: 'PAID_PENDING_TICKET' })
   ]);
   res.json({ paid: completed, scanned, pending: initiated, paidPending, revenue: completed * 1 });
@@ -521,6 +527,12 @@ if (process.env.VERCEL !== '1') {
     console.log(`\n🚀  VisionX Server → http://localhost:${PORT}`);
     console.log(`🎟  Ticket scan  → http://localhost:${PORT}/ticket/:id`);
     console.log(`🛡  Admin panel  → http://localhost:${PORT}/admin\n`);
+  }).on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`❌ Error: Port ${PORT} is already in use by another app!`);
+    } else {
+      console.error('❌ Server startup error:', err);
+    }
   });
 }
 
