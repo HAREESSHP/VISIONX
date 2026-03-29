@@ -42,7 +42,7 @@ const ticketSchema = new mongoose.Schema({
   orderId:    { type: String },
   paymentId:  { type: String },
   amount:     { type: Number, default: 1 },
-  status:     { type: String, enum: ['pending', 'paid', 'failed'], default: 'pending' },
+  status:     { type: String, enum: ['INITIATED', 'PAID_PENDING_TICKET', 'COMPLETED', 'failed'], default: 'INITIATED' },
   scanned:    { type: Boolean, default: false },
   createdAt:  { type: Date, default: Date.now }
 });
@@ -78,7 +78,7 @@ app.post('/api/create-order', async (req, res) => {
     // Check if user already bought a ticket with this email or phone
     const existingTicket = await Ticket.findOne({
       $or: [{ email }, { phone }],
-      status: 'paid'
+      status: 'COMPLETED'
     });
     if (existingTicket) {
       if (existingTicket.phone === phone) {
@@ -101,7 +101,7 @@ app.post('/api/create-order', async (req, res) => {
     await Ticket.create({
       ticketId, name, rollno, email, phone, college, department,
       orderId: order.id,
-      status: 'pending'
+      status: 'INITIATED'
     });
 
     res.json({
@@ -139,9 +139,10 @@ app.post('/api/verify-payment', async (req, res) => {
     }
 
     // Update ticket to paid
+    // 1. Mark as PAID_PENDING_TICKET immediately after signature check
     const ticket = await Ticket.findOneAndUpdate(
       { ticketId },
-      { paymentId: razorpay_payment_id, status: 'paid' },
+      { paymentId: razorpay_payment_id, status: 'PAID_PENDING_TICKET' },
       { new: true }
     );
 
@@ -157,8 +158,12 @@ app.post('/api/verify-payment', async (req, res) => {
       color:  { dark: '#1a1a2e', light: '#ffffff' }
     });
 
-    // Send confirmation email with QR
+    // 3. Send confirmation email with QR
     await sendTicketEmail(ticket, qrDataUrl);
+
+    // 4. Finally mark as COMPLETED
+    ticket.status = 'COMPLETED';
+    await ticket.save();
 
     res.json({ success: true, ticketId: ticket.ticketId });
   } catch (err) {
@@ -175,7 +180,9 @@ app.get('/ticket/:ticketId', async (req, res) => {
   try {
     const ticket = await Ticket.findOne({ ticketId: req.params.ticketId });
     if (!ticket)            return res.status(404).send(scanHTML({ valid: false, reason: 'not_found' }));
-    if (ticket.status !== 'paid') return res.send(scanHTML({ valid: false, reason: 'unpaid', ticket }));
+    if (ticket.status !== 'COMPLETED' && ticket.status !== 'PAID_PENDING_TICKET') {
+      return res.send(scanHTML({ valid: false, reason: 'unpaid', ticket }));
+    }
 
     // Mark scanned
     if (!ticket.scanned) { ticket.scanned = true; await ticket.save(); }
@@ -205,12 +212,13 @@ app.get('/api/admin/tickets', requireAdmin, async (req, res) => {
    ROUTE: GET /api/admin/stats     (protected)
    ============================================= */
 app.get('/api/admin/stats', requireAdmin, async (req, res) => {
-  const [paid, scanned, pending] = await Promise.all([
-    Ticket.countDocuments({ status: 'paid' }),
+  const [completed, scanned, initiated, paidPending] = await Promise.all([
+    Ticket.countDocuments({ status: 'COMPLETED' }),
     Ticket.countDocuments({ scanned: true }),
-    Ticket.countDocuments({ status: 'pending' })
+    Ticket.countDocuments({ status: 'INITIATED' }),
+    Ticket.countDocuments({ status: 'PAID_PENDING_TICKET' })
   ]);
-  res.json({ paid, scanned, pending, revenue: paid * 1 });
+  res.json({ paid: completed, scanned, pending: initiated, paidPending, revenue: completed * 1 });
 });
 
 /* =============================================
@@ -221,8 +229,8 @@ app.post('/api/admin/approve-ticket', requireAdmin, async (req, res) => {
   try {
     const { ticketId } = req.body;
     const ticket = await Ticket.findOneAndUpdate(
-      { ticketId, status: 'pending' },
-      { status: 'paid', paymentId: 'Manual Admin Approval' },
+      { ticketId, status: { $in: ['INITIATED', 'pending'] } },
+      { status: 'PAID_PENDING_TICKET', paymentId: 'Manual Admin Approval' },
       { new: true }
     );
 
@@ -240,10 +248,110 @@ app.post('/api/admin/approve-ticket', requireAdmin, async (req, res) => {
     // Send Mail
     await sendTicketEmail(ticket, qrDataUrl);
 
+    // Mark completed
+    ticket.status = 'COMPLETED';
+    await ticket.save();
+
     res.json({ success: true, ticket });
   } catch (err) {
     console.error('Manual approval error:', err);
     res.status(500).json({ error: 'Approval failed: ' + err.message });
+  }
+});
+
+/* =============================================
+   ROUTE: POST /api/admin/manual-register
+   Admin manual ticket creation for offline sales
+   ============================================= */
+app.post('/api/admin/manual-register', requireAdmin, async (req, res) => {
+  try {
+    const { name, rollno, email, phone, college, department } = req.body;
+
+    if (!name || !rollno || !email || !phone || !college || !department) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    // Generate unique ID
+    const ticketId = 'VX' + uuidv4().replace(/-/g, '').toUpperCase().slice(0, 8);
+
+    // Save as PAID_PENDING_TICKET initially
+    const ticket = await Ticket.create({
+      ticketId, name, rollno, email, phone, college, department,
+      paymentId: 'Manual Offline Entry',
+      status: 'PAID_PENDING_TICKET'
+    });
+
+    // Generate QR
+    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    const qrDataUrl = await QRCode.toDataURL(qrContent, {
+      errorCorrectionLevel: 'H',
+      margin: 2,
+      width:  320,
+      color:  { dark: '#1a1a2e', light: '#ffffff' }
+    });
+
+    // Send Mail
+    await sendTicketEmail(ticket, qrDataUrl);
+
+    // Mark as completed
+    ticket.status = 'COMPLETED';
+    await ticket.save();
+
+    res.json({ success: true, ticketId: ticket.ticketId });
+  } catch (err) {
+    console.error('Manual registration error:', err);
+    res.status(500).json({ error: 'Registration failed: ' + err.message });
+  }
+});
+
+/* =============================================
+   ROUTE: POST /api/admin/delete-ticket
+   Admin manual override to delete a ticket
+   ============================================= */
+app.post('/api/admin/delete-ticket', requireAdmin, async (req, res) => {
+  try {
+    const { ticketId } = req.body;
+    const ticket = await Ticket.findOneAndDelete({ ticketId });
+
+    if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
+
+    res.json({ success: true, message: 'Ticket deleted successfully' });
+  } catch (err) {
+    console.error('Delete error:', err);
+    res.status(500).json({ error: 'Delete failed: ' + err.message });
+  }
+});
+
+/* =============================================
+   ROUTE: POST /api/admin/resend-email
+   Admin manual override to resend ticket mail
+   ============================================= */
+app.post('/api/admin/resend-email', requireAdmin, async (req, res) => {
+  try {
+    const { ticketId } = req.body;
+    const ticket = await Ticket.findOne({ 
+      ticketId, 
+      status: { $in: ['COMPLETED', 'PAID_PENDING_TICKET'] } 
+    });
+
+    if (!ticket) return res.status(404).json({ error: 'Paid ticket not found' });
+
+    // Generate QR Content
+    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    const qrDataUrl = await QRCode.toDataURL(qrContent, {
+      errorCorrectionLevel: 'H',
+      margin: 2,
+      width:  320,
+      color:  { dark: '#1a1a2e', light: '#ffffff' }
+    });
+
+    // Send Mail
+    await sendTicketEmail(ticket, qrDataUrl);
+
+    res.json({ success: true, message: 'Email resent successfully' });
+  } catch (err) {
+    console.error('Resend email error:', err);
+    res.status(500).json({ error: 'Resend failed: ' + err.message });
   }
 });
 

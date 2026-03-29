@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <style>
     :root {
       --primary: #6366f1;
@@ -148,6 +149,59 @@
     .approve-btn:hover { background:rgba(16,185,129,0.3); }
     .approve-btn:disabled { opacity:0.5; cursor:not-allowed; }
 
+    .delete-btn {
+      background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25);
+      color:#ef4444; width:32px; height:32px; border-radius:8px; display:inline-flex; 
+      align-items:center; justify-content:center; cursor:pointer; transition:.3s;
+    }
+    .delete-btn:hover { background:rgba(239,68,68,0.25); transform:scale(1.1); }
+
+    .resend-btn {
+      background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.25);
+      color:#6366f1; width:32px; height:32px; border-radius:8px; display:inline-flex; 
+      align-items:center; justify-content:center; cursor:pointer; transition:.3s;
+    }
+    .resend-btn:hover { background:rgba(99,102,241,0.25); transform:scale(1.1); }
+
+    .filters { display:flex; gap:10px; margin-bottom:20px; }
+    .filter-btn {
+      background:rgba(255,255,255,0.05); border:1px solid var(--border);
+      color:var(--muted); padding:8px 18px; border-radius:50px; font-size:.82rem;
+      font-weight:600; cursor:pointer; transition:.3s;
+    }
+    .filter-btn.active {
+      background:rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.4);
+      color:#a5b4fc;
+    }
+    .filter-btn:hover:not(.active) { background:rgba(255,255,255,0.1); }
+
+    .download-btn {
+      background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.35);
+      color:#10b981; padding:9px 20px; border-radius:50px;
+      font-family:inherit; font-size:.85rem; font-weight:600; cursor:pointer; transition:.3s;
+    }
+    .download-btn:hover { background:rgba(16,185,129,0.25); }
+    
+    .manual-btn {
+      background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35);
+      color:#a5b4fc; padding:9px 20px; border-radius:50px;
+      font-family:inherit; font-size:.85rem; font-weight:600; cursor:pointer; transition:.3s;
+    }
+    .manual-btn:hover { background:rgba(99,102,241,0.25); }
+
+    /* Print Styles for A4 */
+    @media print {
+      body { background: white; color: black; }
+      .topbar, .stats-grid, .search-box, .approve-btn, .refresh-btn, .download-btn, .logout-btn { display: none !important; }
+      .main { padding: 0; max-width: 100%; margin: 0; }
+      .table-section { border: none; background: white; }
+      .table-header h2 { color: black; text-align: center; width: 100%; padding-bottom: 20px; }
+      table { border: 1px solid #eee; border-collapse: collapse; width: 100%; font-size: 8pt; }
+      th, td { border: 1px solid #eee; padding: 6px 8px; color: black !important; }
+      .badge { background: none !important; border: 1px solid #ccc !important; color: black !important; }
+      @page { size: A4 landscape; margin: 1cm; }
+    }
+
     @media(max-width:900px) {
       .stats-grid { grid-template-columns:1fr 1fr; }
       .main { padding:16px; }
@@ -179,6 +233,8 @@
     <span class="topbar-brand">🛡 VisionX Admin</span>
     <div class="topbar-right">
       <span id="last-updated" style="color:rgba(255,255,255,0.35);font-size:.8rem;"></span>
+      <button class="manual-btn" onclick="openManualModal()"><i class="fas fa-plus"></i> Add Offline Ticket</button>
+      <button class="download-btn" onclick="downloadReport()"><i class="fas fa-file-excel"></i> Download Excel</button>
       <button class="refresh-btn" onclick="loadData()"><i class="fas fa-sync-alt"></i> Refresh</button>
       <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
     </div>
@@ -212,7 +268,14 @@
         <div class="stat-icon pink"><i class="fas fa-clock"></i></div>
         <div>
           <div class="stat-val" id="s-pending">—</div>
-          <div class="stat-lbl">Pending</div>
+          <div class="stat-lbl">Initiated (Opened)</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange"><i class="fas fa-exclamation-triangle"></i></div>
+        <div>
+          <div class="stat-val" id="s-paidpending">—</div>
+          <div class="stat-lbl">Paid (Email Failed)</div>
         </div>
       </div>
     </div>
@@ -220,7 +283,16 @@
     <!-- Table -->
     <div class="table-section">
       <div class="table-header">
-        <h2>All Registrations</h2>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <h2>All Registrations</h2>
+          <div class="filters">
+            <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+            <button class="filter-btn" style="color:#10b981" onclick="setFilter('COMPLETED', this)">✅ COMPLETED</button>
+            <button class="filter-btn" style="color:#f97316" onclick="setFilter('PAID_PENDING_TICKET', this)">⚠️ Paid (No Email)</button>
+            <button class="filter-btn" onclick="setFilter('INITIATED', this)">⏳ Initiated</button>
+            <button class="filter-btn" onclick="setFilter('scanned', this)">🔍 Scanned</button>
+          </div>
+        </div>
         <input type="text" class="search-box" id="search-input" placeholder="Search by name, email, ticket..." oninput="filterTable()">
       </div>
       <div class="table-wrap">
@@ -254,6 +326,7 @@
 <script>
   let adminKey = '';
   let allTickets = [];
+  let currentFilter = 'all';
 
   function doLogin() {
     adminKey = document.getElementById('admin-key-input').value.trim();
@@ -294,7 +367,8 @@
     document.getElementById('s-paid').textContent    = d.paid;
     document.getElementById('s-revenue').textContent = '₹' + (d.revenue || 0).toLocaleString();
     document.getElementById('s-scanned').textContent = d.scanned;
-    document.getElementById('s-pending').textContent = d.pending;
+    document.getElementById('s-pending').textContent = d.pending || 0;
+    document.getElementById('s-paidpending').textContent = d.paidPending || 0;
   }
 
   async function loadTickets() {
@@ -320,20 +394,49 @@
         <td>${t.college}</td>
         <td>${t.department}</td>
         <td style="color:rgba(255,255,255,0.4);font-size:.8rem;font-family:monospace">${t.paymentId || '—'}</td>
-        <td><span class="badge ${t.status}">${t.status.toUpperCase()}</span></td>
+        <td>
+          <span class="badge ${t.status}">
+            ${t.status === 'COMPLETED' ? 'SUCCESS' : (t.status === 'PAID_PENDING_TICKET' ? 'PAID (ERR)' : t.status)}
+          </span>
+        </td>
         <td>${t.scanned ? '<span class="badge scanned">SCANNED</span>' : '<span style="color:rgba(255,255,255,0.3)">—</span>'}</td>
         <td style="color:rgba(255,255,255,0.4);font-size:.82rem">${new Date(t.createdAt).toLocaleDateString('en-IN', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</td>
         <td>
-          ${t.status === 'pending'
-            ? `<button class="approve-btn" onclick="approveTicket('${t.ticketId}', this)"><i class="fas fa-check"></i> Approve</button>`
-            : '<span style="color:rgba(255,255,255,0.2)">—</span>'}
+          <div style="display:flex; gap:8px; align-items:center;">
+            ${(t.status === 'INITIATED' || t.status === 'pending')
+              ? `<button class="approve-btn" title="Approve & Send Ticket" onclick="approveTicket('${t.ticketId}', this)"><i class="fas fa-check"></i></button>`
+              : `<button class="resend-btn" title="Resend Email" onclick="resendEmail('${t.ticketId}', this)"><i class="fas fa-envelope"></i></button>`}
+            <button class="delete-btn" title="Delete Registration" onclick="deleteTicket('${t.ticketId}')"><i class="fas fa-trash-alt"></i></button>
+          </div>
         </td>
       </tr>`).join('');
   }
 
+  function setFilter(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterTable();
+  }
+
   function filterTable() {
     const q = document.getElementById('search-input').value.toLowerCase();
-    const filtered = allTickets.filter(t =>
+    
+    let filtered = allTickets;
+
+    // Apply status filter
+    if (currentFilter === 'COMPLETED') {
+      filtered = filtered.filter(t => t.status === 'COMPLETED');
+    } else if (currentFilter === 'PAID_PENDING_TICKET') {
+      filtered = filtered.filter(t => t.status === 'PAID_PENDING_TICKET');
+    } else if (currentFilter === 'INITIATED') {
+      filtered = filtered.filter(t => t.status === 'INITIATED');
+    } else if (currentFilter === 'scanned') {
+      filtered = filtered.filter(t => t.scanned === true);
+    }
+
+    // Apply search query
+    filtered = filtered.filter(t =>
       t.name.toLowerCase().includes(q) ||
       t.rollno.toLowerCase().includes(q) ||
       t.email.toLowerCase().includes(q) ||
@@ -341,7 +444,101 @@
       t.phone.includes(q) ||
       t.college.toLowerCase().includes(q)
     );
+    
     renderTable(filtered);
+  }
+
+  async function deleteTicket(ticketId) {
+    if (!confirm('🛑 WARNING: Are you sure you want to PERMANENTLY DELETE this registration?\\n\\nThis action cannot be undone.')) return;
+
+    try {
+      const r = await fetch('/api/admin/delete-ticket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+        body: JSON.stringify({ ticketId })
+      });
+      const data = await r.json();
+
+      if (!r.ok) throw new Error(data.error || 'Failed to delete');
+      
+      loadData(); // refresh
+    } catch (err) {
+      alert('❌ Error: ' + err.message);
+    }
+  }
+
+  function openManualModal() {
+    document.getElementById('manual-modal').style.display = 'flex';
+  }
+  function closeManualModal() {
+    document.getElementById('manual-modal').style.display = 'none';
+  }
+
+  async function submitManualEntry() {
+    const data = {
+      name: document.getElementById('m-name').value.trim(),
+      rollno: document.getElementById('m-roll').value.trim(),
+      email: document.getElementById('m-email').value.trim(),
+      phone: document.getElementById('m-phone').value.trim(),
+      college: document.getElementById('m-college').value,
+      department: document.getElementById('m-dep').value.trim()
+    };
+
+    if (!data.name || !data.email || !data.rollno) {
+      alert("Name, Email, and Roll No are required!");
+      return;
+    }
+
+    const btn = document.getElementById('m-submit');
+    btn.disabled = true;
+    btn.textContent = "Processing...";
+
+    try {
+      const r = await fetch('/api/admin/manual-register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+        body: JSON.stringify(data)
+      });
+      const res = await r.json();
+
+      if (!r.ok) throw new Error(res.error || 'Registration failed');
+      
+      alert('✅ Ticket Created & Email Sent!');
+      closeManualModal();
+      loadData(); // Refresh list
+    } catch (err) {
+      alert('❌ Error: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Create & Send Ticket";
+    }
+  }
+
+  async function resendEmail(ticketId, btn) {
+    if (!confirm('📧 Re-send ticket details and QR code to the user?')) return;
+    
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
+
+    try {
+      const r = await fetch('/api/admin/resend-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+        body: JSON.stringify({ ticketId })
+      });
+      const data = await r.json();
+
+      if (!r.ok) throw new Error(data.error || 'Failed to resend');
+      
+      alert('✅ Email resent successfully!');
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    } catch (err) {
+      alert('❌ Error: ' + err.message);
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
   }
 
   async function approveTicket(ticketId, btn) {
@@ -370,8 +567,97 @@
     }
   }
 
+  function downloadReport() {
+    if (!allTickets || allTickets.length === 0) {
+      alert("No data to download!");
+      return;
+    }
+
+    // Format data for Excel
+    const data = allTickets.map((t, index) => ({
+      "S.No": index + 1,
+      "Ticket ID": t.ticketId,
+      "Name": t.name,
+      "Roll No": t.rollno,
+      "Email": t.email,
+      "Phone": t.phone,
+      "College": t.college,
+      "Department": t.department,
+      "Payment ID": t.paymentId || "N/A",
+      "Status": t.status.toUpperCase(),
+      "Scanned": t.scanned ? "YES" : "NO",
+      "Amount": "₹1",
+      "Registration Date": new Date(t.createdAt).toLocaleString('en-IN')
+    }));
+
+    // Create worksheet
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    
+    // Set column widths
+    const wscols = [
+      {wch: 5},  // S.No
+      {wch: 15}, // Ticket ID
+      {wch: 25}, // Name
+      {wch: 15}, // Roll No
+      {wch: 30}, // Email
+      {wch: 15}, // Phone
+      {wch: 25}, // College
+      {wch: 15}, // Department
+      {wch: 20}, // Payment ID
+      {wch: 10}, // Status
+      {wch: 10}, // Scanned
+      {wch: 10}, // Amount
+      {wch: 25}  // Date
+    ];
+    worksheet['!cols'] = wscols;
+
+    // Create workbook
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Tickets Data");
+
+    // Download the file
+    const filename = `VisionX_Tickets_Report_${new Date().toISOString().slice(0,10)}.xlsx`;
+    XLSX.writeFile(workbook, filename);
+  }
+
   // Auto-refresh every 60s
   setInterval(() => { if (adminKey) loadData(); }, 60000);
 </script>
+  <!-- Manual Entry Modal -->
+  <div id="manual-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 style="color:#fff;margin:0">Add Offline Registration</h2>
+        <button class="close-btn" onclick="closeManualModal()">&times;</button>
+      </div>
+      <div class="registration-form" id="manual-form" style="padding:20px;display:grid;gap:15px;">
+        <div class="input-group"><input type="text" id="m-name" placeholder="Full Name"></div>
+        <div class="input-group"><input type="text" id="m-roll" placeholder="Roll No (e.g. 21X...)"></div>
+        <div class="input-group"><input type="email" id="m-email" placeholder="Email Address"></div>
+        <div class="input-group"><input type="text" id="m-phone" placeholder="Mobile Number"></div>
+        <div class="input-group">
+          <select id="m-college" style="width:100%;padding:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;">
+            <option value="GNIT">GNIT</option>
+            <option value="GNIITC">GNIITC</option>
+            <option value="GIPS">GIPS</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+        <div class="input-group"><input type="text" id="m-dep" placeholder="Department (e.g. CSE-AI&ML)"></div>
+        <button class="register-btn" id="m-submit" onclick="submitManualEntry()" style="margin-top:10px">Create & Send Ticket</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); display:none; align-items:center; justify-content:center; z-index:9000; padding:20px; }
+    .modal-card { background:#12122a; border-radius:24px; width:100%; max-width:500px; border:1px solid rgba(255,255,255,0.1); position:relative; overflow:hidden; }
+    .modal-header { padding:24px 30px; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center; }
+    .close-btn { background:none; border:none; color:rgba(255,255,255,0.4); font-size:2rem; cursor:pointer; }
+    .register-btn { background:linear-gradient(135deg,#6366f1,#ec4899); border:none; color:#fff; padding:16px; border-radius:14px; font-weight:700; cursor:pointer; transition:.3s; }
+    .register-btn:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(99,102,241,0.4); }
+    .input-group input { width:100%; padding:14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; color:#fff; font-family:inherit; }
+  </style>
+
 </body>
 </html>
