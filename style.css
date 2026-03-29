@@ -3505,6 +3505,27 @@ section {
     box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
 }
 .tkt-field input::placeholder { color: rgba(255,255,255,0.25); }
+.tkt-warning {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #fbbf24;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    margin-top: -8px;
+    font-weight: 500;
+}
+.tkt-warning i {
+    color: #f59e0b;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
 
 .tkt-info-row {
     display: flex; align-items: flex-start; gap: 10px;
