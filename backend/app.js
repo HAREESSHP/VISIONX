@@ -14,6 +14,26 @@ const { v4: uuidv4 } = require('uuid');
 const path      = require('path');
 const cors      = require('cors');
 
+/**
+ * Helper to generate a high-quality QR code image data URL.
+ * Optimizes for Google Lens scanning:
+ * - High contrast (Black on White)
+ * - Sufficient quiet zone (margin: 4)
+ * - Quartile error correction (balance between density and durability)
+ */
+async function generateQRCode(url) {
+  return await QRCode.toDataURL(url, {
+    errorCorrectionLevel: 'Q', 
+    margin: 4,
+    width: 400,
+    color: {
+      dark: '#000000',
+      light: '#ffffff'
+    }
+  });
+}
+
+
 const app = express();
 
 // ── Middleware ────────────────────────────────
@@ -154,15 +174,11 @@ app.post('/api/verify-payment', async (req, res) => {
 
     if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
 
-    // Generate QR code containing only the verification link so scanners automatically open the ticket info page
-    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    // Generate QR code containing details + link so Google Lens shows details directly
+    const qrContent = `🎟️ VisionX Ticket\nName: ${ticket.name}\nRoll: ${ticket.rollno}\nID: ${ticket.ticketId.toUpperCase()}\nLink: ${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    const qrDataUrl = await generateQRCode(qrContent);
 
-    const qrDataUrl = await QRCode.toDataURL(qrContent, {
-      errorCorrectionLevel: 'H',
-      margin: 2,
-      width:  320,
-      color:  { dark: '#1a1a2e', light: '#ffffff' }
-    });
+
 
     // 3. Send confirmation email with QR
     await sendTicketEmail(ticket, qrDataUrl);
@@ -243,13 +259,10 @@ app.post('/api/admin/approve-ticket', requireAdmin, async (req, res) => {
     if (!ticket) return res.status(404).json({ error: 'Pending ticket not found' });
 
     // Generate QR Content
-    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
-    const qrDataUrl = await QRCode.toDataURL(qrContent, {
-      errorCorrectionLevel: 'H',
-      margin: 2,
-      width:  320,
-      color:  { dark: '#1a1a2e', light: '#ffffff' }
-    });
+    const qrContent = `🎟️ VisionX Ticket\nName: ${ticket.name}\nRoll: ${ticket.rollno}\nID: ${ticket.ticketId.toUpperCase()}\nLink: ${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    const qrDataUrl = await generateQRCode(qrContent);
+
+
 
     // Send Mail
     await sendTicketEmail(ticket, qrDataUrl);
@@ -287,14 +300,11 @@ app.post('/api/admin/manual-register', requireAdmin, async (req, res) => {
       status: 'PAID_PENDING_TICKET'
     });
 
-    // Generate QR
-    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
-    const qrDataUrl = await QRCode.toDataURL(qrContent, {
-      errorCorrectionLevel: 'H',
-      margin: 2,
-      width:  320,
-      color:  { dark: '#1a1a2e', light: '#ffffff' }
-    });
+    // Generate QR Content
+    const qrContent = `🎟️ VisionX Ticket\nName: ${ticket.name}\nRoll: ${ticket.rollno}\nID: ${ticket.ticketId.toUpperCase()}\nLink: ${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    const qrDataUrl = await generateQRCode(qrContent);
+
+
 
     // Send Mail
     await sendTicketEmail(ticket, qrDataUrl);
@@ -343,13 +353,10 @@ app.post('/api/admin/resend-email', requireAdmin, async (req, res) => {
     if (!ticket) return res.status(404).json({ error: 'Paid ticket not found' });
 
     // Generate QR Content
-    const qrContent = `${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
-    const qrDataUrl = await QRCode.toDataURL(qrContent, {
-      errorCorrectionLevel: 'H',
-      margin: 2,
-      width:  320,
-      color:  { dark: '#1a1a2e', light: '#ffffff' }
-    });
+    const qrContent = `🎟️ VisionX Ticket\nName: ${ticket.name}\nRoll: ${ticket.rollno}\nID: ${ticket.ticketId.toUpperCase()}\nLink: ${process.env.BASE_URL}/ticket/${ticket.ticketId}`;
+    const qrDataUrl = await generateQRCode(qrContent);
+
+
 
     // Send Mail
     await sendTicketEmail(ticket, qrDataUrl);
