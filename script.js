@@ -500,7 +500,7 @@ async function handleTicketSubmit(e) {
 
         // 2. Open Razorpay checkout
         btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-lock"></i> Proceed to Pay ₹1';
+        btn.innerHTML = '<i class="fas fa-lock"></i> Proceed to Pay ₹500';
 
         const options = {
             key:         data.key,
@@ -558,7 +558,7 @@ async function handleTicketSubmit(e) {
 
     } catch (err) {
         btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-lock"></i> Proceed to Pay ₹1';
+        btn.innerHTML = '<i class="fas fa-lock"></i> Proceed to Pay ₹500';
         errEl.textContent = '⚠️ ' + err.message;
     }
 }

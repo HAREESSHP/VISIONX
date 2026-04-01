@@ -67,7 +67,7 @@ const ticketSchema = new mongoose.Schema({
   department: { type: String, required: true },
   orderId:    { type: String },
   paymentId:  { type: String },
-  amount:     { type: Number, default: 1 },
+  amount:     { type: Number, default: 500 },
   status:     { type: String, enum: ['INITIATED', 'PAID_PENDING_TICKET', 'COMPLETED', 'failed'], default: 'INITIATED' },
   scanned:    { type: Boolean, default: false },
   createdAt:  { type: Date, default: Date.now }
@@ -113,9 +113,9 @@ app.post('/api/create-order', async (req, res) => {
       return res.status(400).json({ error: 'A ticket has already been successfully purchased with this email address.' });
     }
 
-    // Create Razorpay order (₹1 = 100 paise)
+    // Create Razorpay order (₹500 = 50000 paise)
     const order = await razorpay.orders.create({
-      amount:   100,
+      amount:   50000,
       currency: 'INR',
       receipt:  `rcpt_${Date.now()}`
     });
@@ -127,13 +127,14 @@ app.post('/api/create-order', async (req, res) => {
     await Ticket.create({
       ticketId, name, rollno, email, phone, college, department,
       orderId: order.id,
+      amount: 500,
       status: 'INITIATED'
     });
 
     res.json({
       orderId:  order.id,
       ticketId,
-      amount:   100,
+      amount:   50000,
       key:      process.env.RAZORPAY_KEY_ID
     });
   } catch (err) {
@@ -234,13 +235,18 @@ app.get('/api/admin/tickets', requireAdmin, async (req, res) => {
    ROUTE: GET /api/admin/stats     (protected)
    ============================================= */
 app.get('/api/admin/stats', requireAdmin, async (req, res) => {
-  const [completed, scanned, initiated, paidPending] = await Promise.all([
+  const [completed, scanned, initiated, paidPending, revenueResult] = await Promise.all([
     Ticket.countDocuments({ status: { $in: ['COMPLETED', 'paid'] } }),
     Ticket.countDocuments({ scanned: true }),
     Ticket.countDocuments({ status: { $in: ['INITIATED', 'pending'] } }),
-    Ticket.countDocuments({ status: 'PAID_PENDING_TICKET' })
+    Ticket.countDocuments({ status: 'PAID_PENDING_TICKET' }),
+    Ticket.aggregate([
+      { $match: { status: { $in: ['COMPLETED', 'paid'] } } },
+      { $group: { _id: null, total: { $sum: "$amount" } } }
+    ])
   ]);
-  res.json({ paid: completed, scanned, pending: initiated, paidPending, revenue: completed * 1 });
+  const totalRevenue = revenueResult.length > 0 ? revenueResult[0].total : 0;
+  res.json({ paid: completed, scanned, pending: initiated, paidPending, revenue: totalRevenue });
 });
 
 /* =============================================
@@ -297,6 +303,7 @@ app.post('/api/admin/manual-register', requireAdmin, async (req, res) => {
     const ticket = await Ticket.create({
       ticketId, name, rollno, email, phone, college, department,
       paymentId: 'Manual Offline Entry',
+      amount: 500,
       status: 'PAID_PENDING_TICKET'
     });
 
@@ -518,7 +525,7 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0a0a14,
     <div class="row"><span class="lbl">Department</span><span class="val">${ticket.department}</span></div>
     <div class="row"><span class="lbl">Event Date</span><span class="val">April 04, 2026 | 5 PM</span></div>
     <div class="row"><span class="lbl">Venue</span><span class="val">GNIT Open Grounds</span></div>
-    <div class="row"><span class="lbl">Amount Paid</span><span class="val green">₹1 ✓</span></div>
+    <div class="row"><span class="lbl">Amount Paid</span><span class="val green">₹500 ✓</span></div>
     <div class="scanned">✅ Entry validated — ${ticket.scanned ? 'already scanned once' : 'first scan'}</div>
   </div>
   <div class="ftr">VisionX Club • Guru Nanak Institutions, Hyderabad</div>
