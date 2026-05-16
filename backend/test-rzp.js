@@ -12,7 +12,7 @@ const razorpay = new Razorpay({
 async function test() {
   try {
     const order = await razorpay.orders.create({
-      amount: 50000,
+      amount: 100,
       currency: 'INR',
       receipt: 'rcpt_1234'
     });

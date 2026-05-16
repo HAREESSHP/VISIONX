@@ -67,7 +67,7 @@ const ticketSchema = new mongoose.Schema({
   department: { type: String, required: true },
   orderId:    { type: String },
   paymentId:  { type: String },
-  amount:     { type: Number, default: 500 },
+  amount:     { type: Number, default: 1 },
   status:     { type: String, enum: ['INITIATED', 'PAID_PENDING_TICKET', 'COMPLETED', 'failed'], default: 'INITIATED' },
   scanned:    { type: Boolean, default: false },
   createdAt:  { type: Date, default: Date.now }
@@ -113,9 +113,9 @@ app.post('/api/create-order', async (req, res) => {
       return res.status(400).json({ error: 'A ticket has already been successfully purchased with this email address.' });
     }
 
-    // Create Razorpay order (₹500 = 50000 paise)
+    // Create Razorpay order (₹1 = 100 paise)
     const order = await razorpay.orders.create({
-      amount:   50000,
+      amount:   100,
       currency: 'INR',
       receipt:  `rcpt_${Date.now()}`
     });
@@ -127,14 +127,14 @@ app.post('/api/create-order', async (req, res) => {
     await Ticket.create({
       ticketId, name, rollno, email, phone, college, department,
       orderId: order.id,
-      amount: 500,
+      amount: 1,
       status: 'INITIATED'
     });
 
     res.json({
       orderId:  order.id,
       ticketId,
-      amount:   50000,
+      amount:   100,
       key:      process.env.RAZORPAY_KEY_ID
     });
   } catch (err) {
@@ -303,7 +303,7 @@ app.post('/api/admin/manual-register', requireAdmin, async (req, res) => {
     const ticket = await Ticket.create({
       ticketId, name, rollno, email, phone, college, department,
       paymentId: 'Manual Offline Entry',
-      amount: 500,
+      amount: 1,
       status: 'PAID_PENDING_TICKET'
     });
 
