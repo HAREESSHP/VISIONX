@@ -1,3 +1,126 @@
+.about .section-title {
+    color: #f97316 !important;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+/* Improve Team Section Header Visibility */
+.team-leads .section-tag {
+    background: linear-gradient(90deg, #f97316 0%, #f43f5e 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+.team-leads .section-title {
+    color: #ff1744 !important;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+/* --- Beautiful Footer Contact Section --- */
+.footer-contact-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    color: #10b981;
+    text-shadow: 0 2px 12px rgba(16,185,129,0.12);
+}
+
+.footer-contact-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 18px;
+}
+
+.footer-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(99,102,241,0.10);
+    border-radius: 16px;
+    padding: 12px 28px;
+    text-decoration: none;
+    box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    position: relative;
+}
+
+.footer-contact-link .footer-icon {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.footer-contact-link.email {
+    background: linear-gradient(90deg, #f97316 0%, #f43f5e 100%);
+    color: #fff;
+    box-shadow: 0 2px 16px rgba(249,115,22,0.13);
+}
+.footer-contact-link.email .footer-icon {
+    color: #fff;
+}
+.footer-contact-link.linkedin {
+    background: linear-gradient(90deg, #0ea5e9 0%, #6366f1 100%);
+    color: #fff;
+    box-shadow: 0 2px 16px rgba(14,165,233,0.13);
+}
+.footer-contact-link.linkedin .footer-icon {
+    color: #fff;
+}
+.footer-contact-link:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+    filter: brightness(1.08);
+}
+.footer-contact-link:active {
+    filter: brightness(0.95);
+}
+.footer-link-label {
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+@media (max-width: 600px) {
+    .footer-contact-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .footer-contact-link {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* Fix persistent white below footer */
+body, html {
+    background: #12122a !important;
+    min-height: 100vh;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.footer {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    background: #12122a !important;
+    color: #fff !important;
+}
+
+section:last-of-type {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+/* Override white box for ticket modal */
+#tkt-step-form {
+    background: #18182f !important;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.7) !important;
+    color: #fff !important;
+}
 /* ============================================
    VisionX - Modern Event Website Styles
    ============================================ */
@@ -41,10 +164,19 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
+    background-color: #12122a !important;
+    color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    background: #12122a !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 /* Utility Classes */
@@ -77,22 +209,22 @@ ul {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 20px 0;
-    background: rgba(99,102,241,0.18);
-    box-shadow: 0 4px 24px rgba(99,102,241,0.08);
-    border-bottom: 1.5px solid rgba(99,102,241,0.10);
-    backdrop-filter: blur(18px);
+    padding: 8px 0;
+    background: #fff !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-bottom: 1.5px solid #e5e7eb;
+    backdrop-filter: none;
     transition: var(--transition);
     border-radius: 0 0 18px 18px;
     /* Glassmorphism effect */
 }
 
 .navbar.scrolled {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(18px);
-    padding: 15px 0;
-    box-shadow: 0 4px 24px rgba(99,102,241,0.10);
-    border-bottom: 1.5px solid #e0e7ff;
+    background: #fff !important;
+    backdrop-filter: none;
+    padding: 6px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-bottom: 1.5px solid #e5e7eb;
 }
 
 .nav-container {
@@ -226,12 +358,12 @@ ul {
 
 .btn-nav {
     background: linear-gradient(90deg,#6366f1 0%,#ec4899 100%);
-    padding: 10px 28px;
-    border-radius: 50px;
+    padding: 6px 18px;
+    border-radius: 8px;
     color: #fff !important;
     font-weight: 700;
-    font-size: 1.08rem;
-    box-shadow: 0 2px 12px rgba(99,102,241,0.10);
+    font-size: 1rem;
+    box-shadow: none;
     border: none;
     letter-spacing: 0.5px;
     transition: var(--transition);
@@ -495,7 +627,7 @@ section {
 
 .section-header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .section-tag {
@@ -508,13 +640,13 @@ section {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 3px;
-    margin-bottom: 15px;
+    margin-bottom: 6px;
 }
 
 .section-title {
     font-size: 2.8rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 6px;
 }
 
 .section-subtitle {
@@ -1365,7 +1497,7 @@ section {
    ============================================ */
 .team-leads {
     background: var(--bg-darker);
-    padding: 40px 0;
+    padding: 16px 0;
     overflow: hidden;
 }
 
@@ -2788,8 +2920,10 @@ section {
    Footer
    ============================================ */
 .footer {
-    background: #000000;
-    padding: 80px 0 30px;
+    background: #12122a;
+    padding: 32px 0 18px 0;
+    border-top: 1px solid #23234a;
+    margin-bottom: 0;
 }
 
 .footer-content {

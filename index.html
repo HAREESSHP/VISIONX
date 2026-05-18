@@ -14,10 +14,7 @@
 </head>
 
 <body>
-        <!-- Event Completed Banner -->
-        <div class="event-completed-banner" style="background:linear-gradient(90deg,#6366f1,#10b981);color:#fff;text-align:center;padding:14px 0;font-size:1.15rem;font-weight:600;letter-spacing:0.5px;box-shadow:0 2px 8px rgba(99,102,241,0.08);">
-            This Event Has Been Successfully Completed 🎉
-        </div>
+        <!-- ...existing code... -->
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container"> 
@@ -45,7 +42,6 @@
             <p class="hero-description animate-fadeIn">Experience the most exciting campus events</p>
             <div class="hero-buttons animate-fadeIn">
                 <a href="#main-events" class="btn btn-primary">Explore Events</a>
-                <a href="#auto-expo" class="btn btn-secondary">Pre-Events</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -91,7 +87,7 @@
                     <div class="event-image">
                         <img src="photos/CONCERT.png" alt="Cultural Day Concert">
                         <div class="event-date">
-                            <span class="day">04</span>
+                            <span class="day">18</span>
                             <span class="month">APR</span>
                         </div>
                     </div>
@@ -102,12 +98,12 @@
                             Cultural Day Concert showcases the vibrant talents of students and creates an unforgettable
                             campus experience filled with entertainment and energy.</p>
                         <div class="event-meta">
-                            <span><i class="fas fa-calendar"></i> April 04, 2026</span>
-                            <span><i class="fas fa-map-marker-alt"></i> GNIT Open Grounds</span>
+                            <span><i class="fas fa-calendar"></i> 18th April 2026</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Open Air Auditorium</span>
                         </div>
+                        <div style="margin-top:8px;font-weight:600;color:#10b981;">Thank you, event successfully finished</div>
                         <button class="btn-event-reg" onclick="openTicketModal()">
-                            <i class="fas fa-ticket-alt"></i> Get Your Ticket — ₹1
-                            <span class="ticket-note">Limited Access Ticket – ₹1 only</span>
+                            <i class="fas fa-ticket-alt"></i> Get Your Ticket - ₹1
                         </button>
                     </div>
                 </div>
@@ -116,50 +112,7 @@
     </section>
 
     <!-- Auto Expo Pre-Event Section -->
-    <section id="auto-expo" class="auto-expo-section">
-        <div class="auto-expo-bg"></div>
-        <div class="auto-expo-glow glow-1"></div>
-        <div class="auto-expo-glow glow-2"></div>
-        <div class="container">
-            <div class="auto-expo-inner">
-
-                <!-- Left: Trailer Video -->
-                <div class="auto-expo-media">
-                    <div class="auto-expo-video-wrapper">
-                        <video
-                            src="photos/AUTOEXPO TRAILER.mp4"
-                            autoplay muted loop playsinline
-                            class="auto-expo-video"
-                            id="autoExpoVideo">
-                        </video>
-                        <!-- Mute / Unmute toggle -->
-                        <button class="video-mute-btn" id="autoExpoMuteBtn" onclick="toggleAutoExpoMute()" title="Toggle sound">
-                            <i class="fas fa-volume-mute" id="autoExpoMuteIcon"></i>
-                        </button>
-                        <!-- Corner shine sweep -->
-                        <div class="video-shine"></div>
-                        <!-- Bottom gradient fade -->
-                        <div class="video-fade-bottom"></div>
-                    </div>
-                    <div class="auto-expo-badge">
-                        <i class="fas fa-bolt"></i>
-                        <span>Next Up</span>
-                    </div>
-                </div>
-
-                <!-- Right: Content -->
-                <div class="auto-expo-content">
-                    <span class="auto-expo-tag"><i class="fas fa-flag-checkered"></i> Pre-Event</span>
-                    <h2 class="auto-expo-title">Auto <span class="auto-expo-highlight">Expo</span></h2>
-                    <p class="auto-expo-desc">
-                        Rev up your engines! VisionX presents the ultimate campus Auto Expo — a thrilling showcase
-                        of roaring machines, stunning two-wheelers, and cutting-edge vehicles. Experience the power,
-                        design, and innovation of the automobile world, right on campus.
-                    </p>
-                </div>
-
-            </div>
-        </div>
+    <!-- ...Auto Expo section removed... -->
     </section>
 
     <!-- Director Profile Section -->
@@ -167,51 +120,7 @@
         <div class="div-decor-1"></div>
         <div class="div-decor-2"></div>
         <div class="div-decor-3"></div>
-        <div class="container">
-            <div class="director-container">
-                <div class="director-content">
-                    <span class="director-tag">Visionary Leadership</span>
-                    <h2 class="director-name">Dr. Er. Vinay Chopra</h2>
-                    <div class="director-title">Director - CCPI, Guru Nanak Institutions</div>
-                    <p class="director-bio">
-                        A seasoned professional with over 22 years of experience in strategic planning, recruitment, and
-                        corporate relations. Dr. Chopra has been instrumental in establishing 14 Centers of Excellence
-                        and fostering industry-academia collaborations that empower over 10,000 students across the Guru
-                        Nanak Institutions.
-                    </p>
-                    <div class="director-stats">
-                        <div class="d-stat">
-                            <span class="d-stat-val">22+</span>
-                            <span class="d-stat-label">Years of Exp</span>
-                        </div>
-                        <div class="d-stat">
-                            <span class="d-stat-val">14</span>
-                            <span class="d-stat-label">Centers of Excellence</span>
-                        </div>
-                        <div class="d-stat">
-                            <span class="d-stat-val">10K+</span>
-                            <span class="d-stat-label">Students Mentored</span>
-                        </div>
-                    </div>
-                    <div class="director-socials">
-                        <a href="https://www.linkedin.com/in/dr-er-vinay-chopra-86063826" target="_blank"
-                            class="director-social-link" title="LinkedIn Profile">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="director-image-wrapper">
-                    <div class="director-image-card">
-                        <img src="https://gnithyd.ac.in/images/corp-1.webp" alt="Dr. Er. Vinay Chopra">
-                    </div>
-                    <div class="experience-badge">
-                        <span class="exp-num">22+</span>
-                        <span class="exp-text">Years of<br>Excellence</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Team Leads Section -->
     <section id="team-leads" class="team-leads">
@@ -578,106 +487,24 @@
 
 
     <!-- Countdown Section -->
-    <section id="countdown" class="countdown">
-        <div class="countdown-overlay"></div>
-        <div class="container">
-            <div class="countdown-content">
-                <span class="countdown-tag">Mark Your Calendar</span>
-                <h2 class="countdown-title">Cultural Day Concert Begins In</h2>
-                <div class="countdown-timer">
-                    <div class="time-block">
-                        <span id="days" class="time-value">00</span>
-                        <span class="time-label">Days</span>
-                    </div>
-                    <div class="time-separator">:</div>
-                    <div class="time-block">
-                        <span id="hours" class="time-value">00</span>
-                        <span class="time-label">Hours</span>
-                    </div>
-                    <div class="time-separator">:</div>
-                    <div class="time-block">
-                        <span id="minutes" class="time-value">00</span>
-                        <span class="time-label">Minutes</span>
-                    </div>
-                    <div class="time-separator">:</div>
-                    <div class="time-block">
-                        <span id="seconds" class="time-value">00</span>
-                        <span class="time-label">Seconds</span>
-                    </div>
-                </div>
-                <p class="countdown-date"><i class="fas fa-calendar-alt"></i> April 04, 2026 | 5:00 PM</p>
-                <button class="btn btn-primary btn-large" id="buyTicketBtn" onclick="openTicketModal()">
-                    <i class="fas fa-ticket-alt"></i> Buy Ticket — ₹1
-                    <span class="ticket-note">Limited Access Ticket – ₹1 only</span>
-                </button>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
-    <footer class="footer">
-        <footer class="footer" style="background:#12122a;color:#fff;padding:32px 0 18px 0;text-align:center;">
-            <div class="container">
-                <div style="font-size:1.1rem;font-weight:600;margin-bottom:10px;">Contact Admin</div>
-                <div style="margin-bottom:10px;">
-                    <a href="mailto:visionxgni2024@gmail.com" style="color:#10b981;text-decoration:none;font-size:1rem;margin-right:18px;">
-                        <i class="fas fa-envelope"></i> Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/hareesh-ai-dev" target="_blank" style="color:#6366f1;text-decoration:none;font-size:1rem;">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                </div>
-            </div>
-        </footer>
-                <!-- Event Highlights Section -->
-                <section id="event-highlights" class="event-highlights-section" style="padding:48px 0 32px 0;background:#f8fafc;">
-                    <div class="container">
-                        <div class="section-header" style="text-align:center;">
-                            <h2 class="section-title">Event Highlights</h2>
-                            <p class="section-subtitle">Check out some of our Instagram highlights and reels from the event!</p>
-                        </div>
-                        <div class="insta-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;justify-items:center;">
-                            <!-- Example Instagram Embed (replace with real posts/reels) -->
-                            <iframe src="https://www.instagram.com/p/C6w8Qw1yQwF/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true" style="border-radius:12px;"></iframe>
-                            <iframe src="https://www.instagram.com/reel/C6w8Qw1yQwF/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true" style="border-radius:12px;"></iframe>
-                            <!-- Add more iframes or cards as needed -->
-                        </div>
-                    </div>
-                </section>
-
-                <!-- How the Event Was Section -->
-                <section id="how-event-was" class="how-event-was-section" style="padding:48px 0 32px 0;background:#fff;">
-                    <div class="container">
-                        <div class="section-header" style="text-align:center;">
-                            <h2 class="section-title">How the Event Was</h2>
-                            <p class="section-subtitle">A look back at the event, key highlights, and memories.</p>
-                        </div>
-                        <div class="event-summary" style="max-width:700px;margin:0 auto 32px auto;font-size:1.1rem;line-height:1.7;color:#222;background:#f3f4f6;padding:24px 28px;border-radius:14px;box-shadow:0 2px 8px rgba(99,102,241,0.06);">
-                            <strong>Event Summary:</strong> The Cultural Day Concert 2026 brought together students, faculty, and guests for an unforgettable evening of music, dance, and celebration. The event featured vibrant performances, energetic crowds, and a showcase of campus talent, making it a highlight of the academic year.
-                        </div>
-                        <div class="event-key-highlights" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-bottom:32px;">
-                            <div class="highlight-card" style="background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:18px 16px;box-shadow:0 2px 8px rgba(99,102,241,0.04);">
-                                <h4 style="color:#6366f1;margin-bottom:8px;">Live Performances</h4>
-                                <p>Music, dance, and drama acts by talented students.</p>
-                            </div>
-                            <div class="highlight-card" style="background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:18px 16px;box-shadow:0 2px 8px rgba(99,102,241,0.04);">
-                                <h4 style="color:#10b981;margin-bottom:8px;">Crowd Energy</h4>
-                                <p>Over 2000 attendees, vibrant atmosphere, and memorable moments.</p>
-                            </div>
-                            <div class="highlight-card" style="background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:18px 16px;box-shadow:0 2px 8px rgba(99,102,241,0.04);">
-                                <h4 style="color:#f97316;margin-bottom:8px;">Instagram Reels</h4>
-                                <p>Event moments captured and shared on Instagram.</p>
-                            </div>
-                        </div>
-                        <div class="event-instagram-media" style="text-align:center;">
-                            <iframe src="https://www.instagram.com/p/C6w8Qw1yQwF/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true" style="border-radius:12px;margin:0 8px 12px 8px;"></iframe>
-                            <iframe src="https://www.instagram.com/reel/C6w8Qw1yQwF/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true" style="border-radius:12px;margin:0 8px 12px 8px;"></iframe>
-                        </div>
-                    </div>
-                </section>
+    <footer class="footer" style="background:#12122a;color:#fff;padding:32px 0 18px 0;text-align:center;">
+        <div class="container">
+            <div class="footer-contact-header">Contact Admin</div>
+            <div class="footer-contact-row">
+                    <a href="mailto:bagayithiharish@gmail.com" class="footer-contact-link email" title="Email">
+                        <span class="footer-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="footer-link-label">Email</span>
+                </a>
+                    <a href="https://www.linkedin.com/in/hareesh-ai-dev/" target="_blank" class="footer-contact-link linkedin" title="LinkedIn">
+                        <span class="footer-icon"><i class="fab fa-linkedin"></i></span>
+                        <span class="footer-link-label">LinkedIn</span>
+                </a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 VisionX Club, Guru Nanak Institutions. All Rights Reserved [HAREESH].</p>
+                <p>&copy; 2026 VisionX Club, Guru Nanak Institutions. <strong>All Rights Reserved HAREESH</strong></p>
             </div>
         </div>
     </footer>
