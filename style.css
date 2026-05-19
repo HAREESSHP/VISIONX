@@ -1552,13 +1552,17 @@ section {
 .lead-card {
     flex-shrink: 0;
     width: 280px;
-    background: #ffffff;
+    background: linear-gradient(135deg, #232526 0%, #6366f1 50%, #ec4899 100%);
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.18), 0 2px 24px rgba(236, 72, 153, 0.10);
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: none;
     position: relative;
+    animation: fadeInUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+    opacity: 0;
+    animation-delay: calc(var(--lead-index, 0) * 0.12s);
+    animation-play-state: running;
 }
 
 .lead-card::before {
@@ -1578,8 +1582,9 @@ section {
 }
 
 .lead-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 25px 60px rgba(0, 229, 255, 0.4);
+    transform: translateY(-15px) scale(1.04) rotate(-1deg);
+    box-shadow: 0 25px 60px 0 rgba(99, 102, 241, 0.25), 0 8px 32px 0 rgba(236, 72, 153, 0.18);
+    filter: brightness(1.08) saturate(1.2);
 }
 
 .lead-photo {
@@ -1638,8 +1643,10 @@ section {
     gap: 6px;
     font-size: 0.7rem;
     font-weight: 700;
-    color: #ffffff;
-    background: #FF6D00;
+    color: #fff;
+    background: linear-gradient(90deg, #f97316, #f43f5e, #6366f1, #06b6d4);
+    background-size: 300% 300%;
+    animation: gradientMove 3s ease-in-out infinite;
     padding: 6px 14px;
     border-radius: 20px;
     margin-bottom: 12px;
@@ -1675,12 +1682,13 @@ section {
 .lead-name {
     font-size: 1.3rem;
     font-weight: 800;
-    color: var(--text-primary);
     margin-bottom: 8px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: linear-gradient(90deg, #f97316, #f43f5e, #6366f1, #06b6d4);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: gradientMove 4s linear infinite;
 }
 
 .lead-branch {
@@ -1690,12 +1698,39 @@ section {
 }
 
 .lead-quote {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    font-size: 0.95rem;
     font-style: italic;
     padding: 10px 0;
     border-top: 1px solid rgba(99, 102, 241, 0.1);
     margin-top: 8px;
+    background: linear-gradient(90deg, #f43f5e, #6366f1, #06b6d4, #f97316);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientMove 6s linear infinite;
+}
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .lead-desc {
