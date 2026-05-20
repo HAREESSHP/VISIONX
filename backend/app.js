@@ -525,7 +525,7 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0a0a14,
     <div class="row"><span class="lbl">Department</span><span class="val">${ticket.department}</span></div>
     <div class="row"><span class="lbl">Event Date</span><span class="val">April 04, 2026 | 5 PM</span></div>
     <div class="row"><span class="lbl">Venue</span><span class="val">GNIT Open Grounds</span></div>
-    <div class="row"><span class="lbl">Amount Paid</span><span class="val green">₹500 ✓</span></div>
+    <div class="row"><span class="lbl">Amount Paid</span><span class="val green">₹1 ✓</span></div>
     <div class="scanned">✅ Entry validated — ${ticket.scanned ? 'already scanned once' : 'first scan'}</div>
   </div>
   <div class="ftr">VisionX Club • Guru Nanak Institutions, Hyderabad</div>
