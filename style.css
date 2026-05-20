@@ -32,14 +32,15 @@
     color: #fff;
 }
 .largest-video {
-    width: 580px;
-    height: 420px;
+    width: 360px;
+    height: 280px;
 }
 .section-center-videos {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    gap: 30px;
+    margin-top: 40px;
 }
 @media (max-width: 900px) {
     .main-img, .big-img, .largest-video {
@@ -56,12 +57,20 @@
 .main-img, .big-img {
     width: 540px;
     height: 380px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 18px;
     box-shadow: 0 8px 32px #6366f133;
     background: #18182f;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    transform-style: preserve-3d;
 }
+
+.main-img:hover, .big-img:hover {
+    transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) scale3d(1.05, 1.05, 1.05);
+    box-shadow: -10px 15px 40px #6366f166;
+    z-index: 2;
+}
+
 .big-gallery {
     justify-content: center;
     margin-bottom: 32px;
@@ -78,6 +87,15 @@
     border-radius: 16px;
     background: #23234a;
     box-shadow: 0 4px 24px #6366f133;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border 0.4s ease;
+    border: 2px solid transparent;
+}
+.big-video:hover {
+    transform: perspective(1000px) translateY(-10px) rotateX(2deg) scale3d(1.03, 1.03, 1.03);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+    border: 2px solid #6366f1;
+    z-index: 5;
 }
 @media (max-width: 900px) {
     .main-img, .big-img {
@@ -143,22 +161,32 @@
 }
 .autoexpo-videos {
     display: flex;
-    gap: 18px;
+    gap: 32px;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
+    width: 100%;
 }
 .video-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1 1 300px;
+    max-width: 360px;
 }
 .video-wrapper video {
-    width: 220px;
-    height: 180px;
-    border-radius: 12px;
+    width: 100% !important;
+    height: 280px !important;
+    max-width: 100%;
+    border-radius: 16px;
     background: #23234a;
-    box-shadow: 0 2px 12px #6366f133;
+    box-shadow: 0 4px 20px #6366f133;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+.video-wrapper video:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5);
 }
 .audio-toggle {
     position: absolute;
@@ -1254,12 +1282,14 @@ section {
     font-size: 2rem;
     font-weight: 700;
     line-height: 1;
+    color: #1a1a2e;
 }
 
 .event-date .month {
     font-size: 0.85rem;
-    color: var(--primary-light);
+    color: #6366f1;
     text-transform: uppercase;
+    font-weight: 600;
     letter-spacing: 2px;
 }
 
