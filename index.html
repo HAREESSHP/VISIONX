@@ -113,9 +113,121 @@
 
     <!-- Auto Expo Pre-Event Section -->
     <!-- ...Auto Expo section removed... -->
+
+        <!-- Auto Expo Context Section -->
+        <section id="autoexpo-context" class="autoexpo-context">
+            <div class="container autoexpo-flex">
+                <div class="autoexpo-left">
+                    <div class="section-header">
+                        <span class="section-tag">Auto Expo</span>
+                        <h2 class="section-title">Auto Expo Showcase</h2>
+                    </div>
+                    <div class="autoexpo-description">
+                        <p>The Auto Expo is a spectacular pre-event that brings together automobile enthusiasts, innovators, and students to showcase the latest in automotive technology, design, and creativity. From classic cars to futuristic concepts, the Auto Expo is a celebration of engineering marvels and passion for automobiles. Experience live demonstrations, interactive exhibits, and a vibrant display of vehicles that inspire and excite the campus community.</p>
+                    </div>
+                </div>
+                <div class="autoexpo-right">
+                    <div class="autoexpo-album">
+                        <div class="gallery-wrapper big-gallery">
+                            <button class="gallery-btn gallery-prev" onclick="moveGallery(-1)" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                            <img id="gallery-img" src="photos/autoexpo/SaveClip.App_670285495_18031589525797013_7351020430241366061_n.jpg" alt="AutoExpo Gallery" class="main-img big-img move-left">
+                            <button class="gallery-btn gallery-next" onclick="moveGallery(1)" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="autoexpo-videos big-videos section-center-videos">
+                <div class="video-wrapper">
+                    <video class="reel-video big-video largest-video" id="autoexpo-video-1" autoplay loop muted playsinline>
+                        <source src="photos/autoexpo/SaveClip.App_AQNQDCmpC7Rq3z43PuchXMjI9JClD4lDz-vZWgIm9KzrGWkYsx3MDkSxg3fFv8r8TNXs1HEvka66nH5qq-6vthFz1YApOQtPYUzXDng.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-1', this)"><i class="fas fa-volume-mute"></i></button>
+                </div>
+                <div class="video-wrapper">
+                    <video class="reel-video big-video largest-video" id="autoexpo-video-2" autoplay loop muted playsinline>
+                        <source src="photos/autoexpo/SaveClip.App_AQNX_z8JzkFzFvIAEtCMnQXOiqdvdq1O8ZDk2DnYiwYL5nzzyyw0RokW7umvnzguau-ixs2n6UbBYyp82BCMBWpDPxyNBnIRRGKYtM0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-2', this)"><i class="fas fa-volume-mute"></i></button>
+                </div>
+                <div class="video-wrapper">
+                    <video class="reel-video big-video largest-video" id="autoexpo-video-3" autoplay loop muted playsinline>
+                        <source src="photos/autoexpo/SaveClip.App_AQPPfvd0HbZqd-jU-a90Jc80VsTGRsEfpvL6eUJgEQZ66uEPVAIMVmBxC0XmZ7S5ZDzj-bLWi30AXR30Dp5NTshK60uJYF3lEZkQiv8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-3', this)"><i class="fas fa-volume-mute"></i></button>
+                </div>
+            </div>
+                <script>
+                const galleryImages = [
+                    'photos/autoexpo/SaveClip.App_670285495_18031589525797013_7351020430241366061_n.jpg',
+                    'photos/autoexpo/SaveClip.App_670349675_18031589507797013_5045121924365433876_n.jpg',
+                    'photos/autoexpo/SaveClip.App_670440268_18031589537797013_6863205389522836597_n.jpg',
+                    'photos/autoexpo/SaveClip.App_670953980_18031589516797013_1033325889246420523_n.jpg',
+                    'photos/autoexpo/SaveClip.App_671196465_18031589555797013_9215046679635315209_n.jpg',
+                    'photos/autoexpo/SaveClip.App_671242223_18101445095475142_5330623003352431636_n.jpg',
+                    'photos/autoexpo/SaveClip.App_673133370_18101445104475142_7280154606406334592_n.jpg'
+                ];
+                let galleryIndex = 0;
+                function moveGallery(dir) {
+                    galleryIndex += dir;
+                    if (galleryIndex < 0) galleryIndex = galleryImages.length - 1;
+                    if (galleryIndex >= galleryImages.length) galleryIndex = 0;
+                    document.getElementById('gallery-img').src = galleryImages[galleryIndex];
+                }
+                function toggleAudio(videoId, btn) {
+                    const video = document.getElementById(videoId);
+                    if (video.muted) {
+                        video.muted = false;
+                        btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    } else {
+                        video.muted = true;
+                        btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    }
+                }
+                </script>
+                </div>
+            </div>
+        </section>
+    <script>
+    function toggleAudio(videoId, btn) {
+        const video = document.getElementById(videoId);
+        if (video.muted) {
+            video.muted = false;
+            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        } else {
+            video.muted = true;
+            btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        }
+    }
+    </script>
     </section>
 
     <!-- Director Profile Section -->
+
+        <!-- Event Reels Section -->
+        <section id="event-reels" class="event-reels">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Event Content</span>
+                    <h2 class="section-title">Event Reels</h2>
+                </div>
+
+                <!-- AutoExpo Reels removed from here -->
+
+                <!-- PreEvents Reels -->
+                <div class="reels-section" id="preevents-reels">
+                    <h3 class="reels-title">PreEvents Reels</h3>
+                    <div class="reels-content">
+                        <!-- Replace below with actual reels (videos/images) -->
+                        <div class="reel-placeholder">PreEvent Reel 1</div>
+                        <div class="reel-placeholder">PreEvent Reel 2</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     <section id="director-profile" class="director-section">
         <div class="div-decor-1"></div>
         <div class="div-decor-2"></div>
