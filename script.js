@@ -82,6 +82,14 @@ function initReels() {
         // Observe each reel item
         observer.observe(item);
 
+        // Add volume toggle button dynamically
+        const audioBtn = document.createElement('button');
+        audioBtn.type = 'button';
+        audioBtn.className = 'reel-audio-toggle';
+        audioBtn.setAttribute('aria-label', 'Toggle Sound');
+        audioBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        item.appendChild(audioBtn);
+
         // Try to play video on load
         video.onloadeddata = function () {
             video.play().catch(() => { });
@@ -90,9 +98,35 @@ function initReels() {
         // Click to toggle mute/unmute
         item.addEventListener('click', function (e) {
             e.preventDefault();
-            video.muted = !video.muted;
-            if (!video.muted) {
+            const wasMuted = video.muted;
+
+            if (wasMuted) {
+                // Mute all video elements on the entire page
+                document.querySelectorAll('video').forEach(vid => {
+                    if (vid !== video) {
+                        vid.muted = true;
+                    }
+                });
+
+                // Set all other toggle icons on the page to muted
+                document.querySelectorAll('.reel-audio-toggle i, .audio-toggle i').forEach(icon => {
+                    icon.className = 'fas fa-volume-mute';
+                });
+
+                // Unmute this video
+                video.muted = false;
                 video.volume = 1.0;
+                const icon = audioBtn.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-volume-up';
+                }
+            } else {
+                // Mute this video
+                video.muted = true;
+                const icon = audioBtn.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-volume-mute';
+                }
             }
         });
     });

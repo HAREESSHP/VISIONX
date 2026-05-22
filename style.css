@@ -3209,6 +3209,38 @@ section {
     margin-left: 4px;
 }
 
+/* Audio Toggle Button for Reels */
+.reel-audio-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(18, 18, 42, 0.75);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.reel-audio-toggle:hover {
+    background: #6366f1;
+    transform: scale(1.1);
+}
+
+.reel-audio-toggle i {
+    font-size: 1.1rem;
+    color: #fff;
+    transition: transform 0.2s ease;
+}
+
 /* Old gallery styles kept for compatibility */
 .gallery-grid {
     display: grid;

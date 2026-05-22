@@ -14,10 +14,10 @@
 </head>
 
 <body>
-        <!-- ...existing code... -->
+    <!-- ...existing code... -->
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container"> 
+        <div class="nav-container">
             <a href="#" class="logo"><img src="photos/visionx-logo.png" alt="VisionX Logo" class="logo-img"></a>
             <ul class="nav-links">
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -101,7 +101,8 @@
                             <span><i class="fas fa-calendar"></i> 18th April 2026</span>
                             <span><i class="fas fa-map-marker-alt"></i> Open Air Auditorium</span>
                         </div>
-                        <div style="margin-top:8px;font-weight:600;color:#10b981;">Thank you, event successfully finished</div>
+                        <div style="margin-top:8px;font-weight:600;color:#10b981;">Thank you, event successfully
+                            finished</div>
                         <button class="btn-event-reg" onclick="openTicketModal()">
                             <i class="fas fa-ticket-alt"></i> Get Your Ticket - ₹1
                         </button>
@@ -114,106 +115,158 @@
     <!-- Auto Expo Pre-Event Section -->
     <!-- ...Auto Expo section removed... -->
 
-        <!-- Auto Expo Context Section -->
-        <section id="autoexpo-context" class="autoexpo-context">
-            <div class="container autoexpo-flex">
-                <div class="autoexpo-left">
-                    <div class="section-header">
-                        <span class="section-tag">Auto Expo</span>
-                        <h2 class="section-title">Auto Expo Showcase</h2>
-                    </div>
-                    <div class="autoexpo-description">
-                        <p>The Auto Expo is a spectacular pre-event that brings together automobile enthusiasts, innovators, and students to showcase the latest in automotive technology, design, and creativity. From classic cars to futuristic concepts, the Auto Expo is a celebration of engineering marvels and passion for automobiles. Experience live demonstrations, interactive exhibits, and a vibrant display of vehicles that inspire and excite the campus community.</p>
-                    </div>
+    <!-- Auto Expo Context Section -->
+    <section id="autoexpo-context" class="autoexpo-context">
+        <div class="container autoexpo-flex">
+            <div class="autoexpo-left">
+                <div class="section-header">
+                    <span class="section-tag">Auto Expo</span>
+                    <h2 class="section-title">Auto Expo Showcase</h2>
                 </div>
-                <div class="autoexpo-right">
-                    <div class="autoexpo-album">
-                        <div class="gallery-wrapper big-gallery">
-                            <button class="gallery-btn gallery-prev" onclick="moveGallery(-1)" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-                            <img id="gallery-img" src="photos/autoexpo/SaveClip.App_670285495_18031589525797013_7351020430241366061_n.jpg" alt="AutoExpo Gallery" class="main-img big-img move-left">
-                            <button class="gallery-btn gallery-next" onclick="moveGallery(1)" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
-                        </div>
+                <div class="autoexpo-description">
+                    <p>The Auto Expo is a spectacular pre-event that brings together automobile enthusiasts, innovators,
+                        and students to showcase the latest in automotive technology, design, and creativity. From
+                        classic cars to futuristic concepts, the Auto Expo is a celebration of engineering marvels and
+                        passion for automobiles. Experience live demonstrations, interactive exhibits, and a vibrant
+                        display of vehicles that inspire and excite the campus community.</p>
+                </div>
+            </div>
+            <div class="autoexpo-right">
+                <div class="autoexpo-album">
+                    <div class="gallery-wrapper big-gallery">
+                        <button class="gallery-btn gallery-prev" onclick="moveGallery(-1)"
+                            aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                        <img id="gallery-img"
+                            src="photos/autoexpo/SaveClip.App_670285495_18031589525797013_7351020430241366061_n.jpg"
+                            alt="AutoExpo Gallery" class="main-img big-img move-left">
+                        <button class="gallery-btn gallery-next" onclick="moveGallery(1)" aria-label="Next image"><i
+                                class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>
-            
-            <div class="autoexpo-videos big-videos section-center-videos">
-                <div class="video-wrapper">
-                    <video class="reel-video big-video largest-video" id="autoexpo-video-main" autoplay loop muted playsinline>
-                        <source src="photos/autoexpo/SaveClip.App_AQNOqINA06I0ezQo83YD-3RvIv8gmKq1w3kWh0wcKkWoPeQZFCxV25KlwSw1zCp7sYFRAzYw8xuKbYKldCfqm_GbRf6U8zEujLxYR04.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-main', this)"><i class="fas fa-volume-mute"></i></button>
-                </div>
-                <div class="video-wrapper">
-                    <video class="reel-video big-video largest-video" id="autoexpo-video-1" autoplay loop muted playsinline>
-                        <source src="photos/autoexpo/SaveClip.App_AQNQDCmpC7Rq3z43PuchXMjI9JClD4lDz-vZWgIm9KzrGWkYsx3MDkSxg3fFv8r8TNXs1HEvka66nH5qq-6vthFz1YApOQtPYUzXDng.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-1', this)"><i class="fas fa-volume-mute"></i></button>
-                </div>
-                <div class="video-wrapper">
-                    <video class="reel-video big-video largest-video" id="autoexpo-video-2" autoplay loop muted playsinline>
-                        <source src="photos/autoexpo/SaveClip.App_AQNX_z8JzkFzFvIAEtCMnQXOiqdvdq1O8ZDk2DnYiwYL5nzzyyw0RokW7umvnzguau-ixs2n6UbBYyp82BCMBWpDPxyNBnIRRGKYtM0.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-2', this)"><i class="fas fa-volume-mute"></i></button>
-                </div>
-                <div class="video-wrapper">
-                    <video class="reel-video big-video largest-video" id="autoexpo-video-3" autoplay loop muted playsinline>
-                        <source src="photos/autoexpo/SaveClip.App_AQPPfvd0HbZqd-jU-a90Jc80VsTGRsEfpvL6eUJgEQZ66uEPVAIMVmBxC0XmZ7S5ZDzj-bLWi30AXR30Dp5NTshK60uJYF3lEZkQiv8.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-3', this)"><i class="fas fa-volume-mute"></i></button>
-                </div>
+        </div>
+
+        <div class="autoexpo-videos big-videos section-center-videos">
+            <div class="video-wrapper">
+                <video class="reel-video big-video largest-video" id="autoexpo-video-main" autoplay loop muted
+                    playsinline>
+                    <source
+                        src="photos/autoexpo/SaveClip.App_AQNOqINA06I0ezQo83YD-3RvIv8gmKq1w3kWh0wcKkWoPeQZFCxV25KlwSw1zCp7sYFRAzYw8xuKbYKldCfqm_GbRf6U8zEujLxYR04.mp4"
+                        type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-main', this)"><i
+                        class="fas fa-volume-mute"></i></button>
             </div>
-                <script>
-                const galleryImages = [
-                    'photos/autoexpo/SaveClip.App_670285495_18031589525797013_7351020430241366061_n.jpg',
-                    'photos/autoexpo/SaveClip.App_670349675_18031589507797013_5045121924365433876_n.jpg',
-                    'photos/autoexpo/SaveClip.App_670440268_18031589537797013_6863205389522836597_n.jpg',
-                    'photos/autoexpo/SaveClip.App_670953980_18031589516797013_1033325889246420523_n.jpg',
-                    'photos/autoexpo/SaveClip.App_671196465_18031589555797013_9215046679635315209_n.jpg',
-                    'photos/autoexpo/SaveClip.App_671242223_18101445095475142_5330623003352431636_n.jpg',
-                    'photos/autoexpo/SaveClip.App_673133370_18101445104475142_7280154606406334592_n.jpg'
-                ];
-                let galleryIndex = 0;
-                function moveGallery(dir) {
-                    galleryIndex += dir;
-                    if (galleryIndex < 0) galleryIndex = galleryImages.length - 1;
-                    if (galleryIndex >= galleryImages.length) galleryIndex = 0;
-                    document.getElementById('gallery-img').src = galleryImages[galleryIndex];
+            <div class="video-wrapper">
+                <video class="reel-video big-video largest-video" id="autoexpo-video-1" autoplay loop muted playsinline>
+                    <source
+                        src="photos/autoexpo/SaveClip.App_AQNQDCmpC7Rq3z43PuchXMjI9JClD4lDz-vZWgIm9KzrGWkYsx3MDkSxg3fFv8r8TNXs1HEvka66nH5qq-6vthFz1YApOQtPYUzXDng.mp4"
+                        type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-1', this)"><i
+                        class="fas fa-volume-mute"></i></button>
+            </div>
+            <div class="video-wrapper">
+                <video class="reel-video big-video largest-video" id="autoexpo-video-2" autoplay loop muted playsinline>
+                    <source
+                        src="photos/autoexpo/SaveClip.App_AQNX_z8JzkFzFvIAEtCMnQXOiqdvdq1O8ZDk2DnYiwYL5nzzyyw0RokW7umvnzguau-ixs2n6UbBYyp82BCMBWpDPxyNBnIRRGKYtM0.mp4"
+                        type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-2', this)"><i
+                        class="fas fa-volume-mute"></i></button>
+            </div>
+            <div class="video-wrapper">
+                <video class="reel-video big-video largest-video" id="autoexpo-video-3" autoplay loop muted playsinline>
+                    <source
+                        src="photos/autoexpo/SaveClip.App_AQPPfvd0HbZqd-jU-a90Jc80VsTGRsEfpvL6eUJgEQZ66uEPVAIMVmBxC0XmZ7S5ZDzj-bLWi30AXR30Dp5NTshK60uJYF3lEZkQiv8.mp4"
+                        type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="audio-toggle" onclick="toggleAudio('autoexpo-video-3', this)"><i
+                        class="fas fa-volume-mute"></i></button>
+            </div>
+        </div>
+        <script>
+            const galleryImages = [
+                'photos/autoexpo/SaveClip.App_670285495_18031589525797013_7351020430241366061_n.jpg',
+                'photos/autoexpo/SaveClip.App_670349675_18031589507797013_5045121924365433876_n.jpg',
+                'photos/autoexpo/SaveClip.App_670440268_18031589537797013_6863205389522836597_n.jpg',
+                'photos/autoexpo/SaveClip.App_670953980_18031589516797013_1033325889246420523_n.jpg',
+                'photos/autoexpo/SaveClip.App_671196465_18031589555797013_9215046679635315209_n.jpg',
+                'photos/autoexpo/SaveClip.App_671242223_18101445095475142_5330623003352431636_n.jpg',
+                'photos/autoexpo/SaveClip.App_673133370_18101445104475142_7280154606406334592_n.jpg'
+            ];
+            let galleryIndex = 0;
+            function moveGallery(dir) {
+                galleryIndex += dir;
+                if (galleryIndex < 0) galleryIndex = galleryImages.length - 1;
+                if (galleryIndex >= galleryImages.length) galleryIndex = 0;
+                document.getElementById('gallery-img').src = galleryImages[galleryIndex];
+            }
+            function toggleAudio(videoId, btn) {
+                const video = document.getElementById(videoId);
+                const wasMuted = video.muted;
+
+                if (wasMuted) {
+                    // Mute all video elements on the entire page
+                    document.querySelectorAll('video').forEach(vid => {
+                        if (vid !== video) {
+                            vid.muted = true;
+                        }
+                    });
+
+                    // Set all other toggle icons on the page to muted
+                    document.querySelectorAll('.reel-audio-toggle i, .audio-toggle i').forEach(icon => {
+                        icon.className = 'fas fa-volume-mute';
+                    });
+
+                    video.muted = false;
+                    video.volume = 1.0;
+                    btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                } else {
+                    video.muted = true;
+                    btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
                 }
-                function toggleAudio(videoId, btn) {
-                    const video = document.getElementById(videoId);
-                    if (video.muted) {
-                        video.muted = false;
-                        btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                    } else {
-                        video.muted = true;
-                        btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                    }
-                }
-                </script>
-                </div>
-            </div>
-        </section>
+            }
+        </script>
+        </div>
+        </div>
+    </section>
     <script>
-    function toggleAudio(videoId, btn) {
-        const video = document.getElementById(videoId);
-        if (video.muted) {
-            video.muted = false;
-            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-        } else {
-            video.muted = true;
-            btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        function toggleAudio(videoId, btn) {
+            const video = document.getElementById(videoId);
+            const wasMuted = video.muted;
+
+            if (wasMuted) {
+                // Mute all video elements on the entire page
+                document.querySelectorAll('video').forEach(vid => {
+                    if (vid !== video) {
+                        vid.muted = true;
+                    }
+                });
+
+                // Set all other toggle icons on the page to muted
+                document.querySelectorAll('.reel-audio-toggle i, .audio-toggle i').forEach(icon => {
+                    icon.className = 'fas fa-volume-mute';
+                });
+
+                video.muted = false;
+                video.volume = 1.0;
+                btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                video.muted = true;
+                btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
         }
-    }
     </script>
     </section>
 
     <!-- Summit Guests Section -->
-    <section id="summit-guests" class="autoexpo-context" style="background: linear-gradient(135deg, #13111c 0%, #1e1b4b 100%); padding: 80px 0; margin-top: 0; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+    <section id="summit-guests" class="autoexpo-context"
+        style="background: linear-gradient(135deg, #13111c 0%, #1e1b4b 100%); padding: 80px 0; margin-top: 0; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
         <div class="container autoexpo-flex">
             <div class="autoexpo-left">
                 <div class="section-header">
@@ -221,543 +274,551 @@
                     <h2 class="section-title">Summit Guests</h2>
                 </div>
                 <div class="autoexpo-description">
-                    <p>We are organizing this summit to bring successful industry leaders, innovators, and experienced professionals to our campus so that students can interact with them directly and gain practical exposure beyond classroom learning. By inviting 10+ distinguished guests, we aim to inspire students, help them understand real-world opportunities, guide them toward their career paths, and keep them on track with current industry trends, skills, and future possibilities. The summit creates a platform where students can learn from the journeys, experiences, and insights of accomplished people.</p>
+                    <p>We are organizing this summit to bring successful industry leaders, innovators, and experienced
+                        professionals to our campus so that students can interact with them directly and gain practical
+                        exposure beyond classroom learning. By inviting 10+ distinguished guests, we aim to inspire
+                        students, help them understand real-world opportunities, guide them toward their career paths,
+                        and keep them on track with current industry trends, skills, and future possibilities. The
+                        summit creates a platform where students can learn from the journeys, experiences, and insights
+                        of accomplished people.</p>
                 </div>
             </div>
             <div class="autoexpo-right">
                 <div class="autoexpo-album">
                     <div class="gallery-wrapper big-gallery">
-                        <button class="gallery-btn gallery-prev" onclick="moveSummitGallery(-1)" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-                        <img id="summit-gallery-img" src="photos/SUMMIT/SaveClip.App_670569794_17889870198463131_403453027482370563_n.jpg" alt="Summit Guests Gallery" class="main-img big-img move-left">
-                        <button class="gallery-btn gallery-next" onclick="moveSummitGallery(1)" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                        <button class="gallery-btn gallery-prev" onclick="moveSummitGallery(-1)"
+                            aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                        <img id="summit-gallery-img"
+                            src="photos/SUMMIT/SaveClip.App_670569794_17889870198463131_403453027482370563_n.jpg"
+                            alt="Summit Guests Gallery" class="main-img big-img move-left">
+                        <button class="gallery-btn gallery-next" onclick="moveSummitGallery(1)"
+                            aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>
         </div>
         <script>
-        const summitGalleryImages = [
-            'photos/SUMMIT/SaveClip.App_670569794_17889870198463131_403453027482370563_n.jpg',
-            'photos/SUMMIT/SaveClip.App_669641783_17889246675463131_2508951220180119172_n.jpg',
-            'photos/SUMMIT/SaveClip.App_669661149_17889086709463131_2335527213913117655_n.jpg',
-            'photos/SUMMIT/SaveClip.App_669769744_17889204060463131_3816848826813340764_n.jpg',
-            'photos/SUMMIT/SaveClip.App_669863192_17889074973463131_5470957253952732671_n.jpg',
-            'photos/SUMMIT/SaveClip.App_670268977_17889483846463131_6582093228981361439_n.jpg',
-            'photos/SUMMIT/SaveClip.App_670657724_17889383325463131_6111596792347168914_n.jpg',
-            'photos/SUMMIT/SaveClip.App_670880966_17889262563463131_3178734118676174020_n.jpg',
-            'photos/SUMMIT/SaveClip.App_671815574_17889263757463131_6246971672001004076_n.jpg'
-        ];
-        let summitGalleryIndex = 0;
-        function moveSummitGallery(dir) {
-            summitGalleryIndex += dir;
-            if (summitGalleryIndex < 0) summitGalleryIndex = summitGalleryImages.length - 1;
-            if (summitGalleryIndex >= summitGalleryImages.length) summitGalleryIndex = 0;
-            document.getElementById('summit-gallery-img').src = summitGalleryImages[summitGalleryIndex];
-        }
+            const summitGalleryImages = [
+                'photos/SUMMIT/SaveClip.App_670569794_17889870198463131_403453027482370563_n.jpg',
+                'photos/SUMMIT/SaveClip.App_669641783_17889246675463131_2508951220180119172_n.jpg',
+                'photos/SUMMIT/SaveClip.App_669661149_17889086709463131_2335527213913117655_n.jpg',
+                'photos/SUMMIT/SaveClip.App_669769744_17889204060463131_3816848826813340764_n.jpg',
+                'photos/SUMMIT/SaveClip.App_669863192_17889074973463131_5470957253952732671_n.jpg',
+                'photos/SUMMIT/SaveClip.App_670268977_17889483846463131_6582093228981361439_n.jpg',
+                'photos/SUMMIT/SaveClip.App_670657724_17889383325463131_6111596792347168914_n.jpg',
+                'photos/SUMMIT/SaveClip.App_670880966_17889262563463131_3178734118676174020_n.jpg',
+                'photos/SUMMIT/SaveClip.App_671815574_17889263757463131_6246971672001004076_n.jpg'
+            ];
+            let summitGalleryIndex = 0;
+            function moveSummitGallery(dir) {
+                summitGalleryIndex += dir;
+                if (summitGalleryIndex < 0) summitGalleryIndex = summitGalleryImages.length - 1;
+                if (summitGalleryIndex >= summitGalleryImages.length) summitGalleryIndex = 0;
+                document.getElementById('summit-gallery-img').src = summitGalleryImages[summitGalleryIndex];
+            }
         </script>
     </section>
 
     <!-- Director Profile Section -->
 
-        <!-- Event Reels Section -->
-        <section id="event-reels" class="event-reels" style="display: none;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Event Content</span>
-                    <h2 class="section-title">Event Reels</h2>
-                </div>
+    <!-- Event Reels Section -->
+    <section id="event-reels" class="event-reels" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Event Content</span>
+                <h2 class="section-title">Event Reels</h2>
             </div>
-        </section>
+        </div>
+    </section>
     <section id="director-profile" class="director-section">
         <div class="div-decor-1"></div>
         <div class="div-decor-2"></div>
         <div class="div-decor-3"></div>
 
 
-    <!-- Team Leads Section -->
-    <section id="team-leads" class="team-leads">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">The Team</span>
-                <h2 class="section-title">Meet Our Leads</h2>
-            </div>
-        </div>
-        <div class="leads-marquee">
-            <div class="leads-track">
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <div class="lead-photo-placeholder"><i class="fas fa-crown"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-founder"><i class="fas fa-crown"></i> Founder</div>
-                        <h4 class="lead-name">Karthik</h4>
-                        <p class="lead-quote">"The vision behind VisionX"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/rohan.png" alt="Event Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-event"><i class="fas fa-calendar-check"></i> Event Lead</div>
-                        <h4 class="lead-name">Rohan Lingam</h4>
-                        <p class="lead-quote">"Making events memorable"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/surya-dubey.png" alt="Operations Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-ops"><i class="fas fa-cogs"></i> Operations Lead</div>
-                        <h4 class="lead-name">Surya Dubey</h4>
-                        <p class="lead-quote">"Executing with excellence"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/jason.png" alt="Cultural Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-cultural"><i class="fas fa-music"></i> Cultural Lead</div>
-                        <h4 class="lead-name">Jason</h4>
-                        <p class="lead-quote">"Bringing art to life"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/md-faiz.png" alt="Marketing Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-marketing"><i class="fas fa-bullhorn"></i> Marketing Lead</div>
-                        <h4 class="lead-name">Md Faiz</h4>
-                        <p class="lead-quote">"Spreading the word"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/nithin.png" alt="Designing Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-design"><i class="fas fa-palette"></i> Designing Lead</div>
-                        <h4 class="lead-name">Nithin</h4>
-                        <p class="lead-quote">"Creating visual magic"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/hareesh.png" alt="Technical Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-tech"><i class="fas fa-code"></i> Technical Lead</div>
-                        <h4 class="lead-name">Hareesh</h4>
-                        <p class="lead-quote">"Building the future"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/aryan.png" alt="Content Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-content"><i class="fas fa-pen"></i> Content Lead</div>
-                        <h4 class="lead-name">Aryan</h4>
-                        <p class="lead-quote">"Words that inspire"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/pranay.png" alt="Photography Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-photo"><i class="fas fa-camera"></i> Photography Lead</div>
-                        <h4 class="lead-name">Pranay</h4>
-                        <p class="lead-quote">"Capturing moments"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/akhil.png" alt="Logistics Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-logistics"><i class="fas fa-truck"></i> Logistics Lead</div>
-                        <h4 class="lead-name">Akhil</h4>
-                        <p class="lead-quote">"Delivering excellence"</p>
-                    </div>
-                </div>
-                <!-- Duplicate for seamless loop -->
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <div class="lead-photo-placeholder"><i class="fas fa-crown"></i></div>
-                        <div class="lead-photo-placeholder"><i class="fas fa-crown"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role role-founder"><i class="fas fa-crown"></i> Founder</div>
-                        <h4 class="lead-name">Karthik</h4>
-                        <p class="lead-quote">"The vision behind VisionX"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/rohan.png" alt="Event Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-calendar-check"></i> Event Lead</div>
-                        <h4 class="lead-name">Rohan Lingam</h4>
-                        <p class="lead-quote">"Making events memorable"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/surya-dubey.png" alt="Operations Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-cogs"></i> Operations Lead</div>
-                        <h4 class="lead-name">Surya Dubey</h4>
-                        <p class="lead-quote">"Executing with excellence"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/jason.png" alt="Cultural Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-music"></i> Cultural Lead</div>
-                        <h4 class="lead-name">Jason</h4>
-                        <p class="lead-quote">"Bringing art to life"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/md-faiz.png" alt="Marketing Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-bullhorn"></i> Marketing Lead</div>
-                        <h4 class="lead-name">Md Faiz</h4>
-                        <p class="lead-quote">"Spreading the word"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/nithin.png" alt="Designing Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-palette"></i> Designing Lead</div>
-                        <h4 class="lead-name">Nithin</h4>
-                        <p class="lead-quote">"Creating visual magic"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/hareesh.png" alt="Technical Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-code"></i> Technical Lead</div>
-                        <h4 class="lead-name">Hareesh</h4>
-                        <p class="lead-quote">"Building the future"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/aryan.png" alt="Content Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-pen"></i> Content Lead</div>
-                        <h4 class="lead-name">Aryan</h4>
-                        <p class="lead-quote">"Words that inspire"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/pranay.png" alt="Photography Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-camera"></i> Photography Lead</div>
-                        <h4 class="lead-name">Pranay</h4>
-                        <p class="lead-quote">"Capturing moments"</p>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-photo">
-                        <img src="photos/akhil.png" alt="Logistics Lead">
-                        <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
-                    </div>
-                    <div class="lead-info">
-                        <div class="lead-role"><i class="fas fa-truck"></i> Logistics Lead</div>
-                        <h4 class="lead-name">Akhil</h4>
-                        <p class="lead-quote">"Delivering excellence"</p>
-                    </div>
+        <!-- Team Leads Section -->
+        <section id="team-leads" class="team-leads">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">The Team</span>
+                    <h2 class="section-title">Meet Our Leads</h2>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Previous Events Gallery -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag"><i class="fas fa-play-circle"></i> Memories</span>
-                <h2 class="section-title">Previous Events</h2>
-                <p class="section-subtitle">Relive the magic of our past events</p>
-            </div>
-            <div class="reels-container">
-                <div class="reels-track">
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQMDs8T35wLWXaBsbONVx_VL3xAmJ-1zOSyp4oKJ-CkxrHEwznCXZWdATMh0V0-ILgqfRjFSpECe48U5c1oiCTyIk5CMjX-6FczPaII.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Event Highlights</span>
+            <div class="leads-marquee">
+                <div class="leads-track">
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <div class="lead-photo-placeholder"><i class="fas fa-crown"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-founder"><i class="fas fa-crown"></i> Founder</div>
+                            <h4 class="lead-name">Karthik</h4>
+                            <p class="lead-quote">"The vision behind VisionX"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQMhFpnInzf2vvj3HLedgFfEApndWuenwP_JkgsYWarsWN0gzZ4PXS9UVlbTEu88fkCVYh-SB39DAwubrxrJ7kE51O7eoqjnTfzn478.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Campus Moments</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/rohan.png" alt="Event Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-event"><i class="fas fa-calendar-check"></i> Event Lead</div>
+                            <h4 class="lead-name">Rohan Lingam</h4>
+                            <p class="lead-quote">"Making events memorable"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQMOGMuGhvBdHKtJCSVsXk5T_LS-5V1FUFgwsa3iG2P368pI8UJ1E840Rfk2RnqA7a8UDVVQj7zYDVU0VpL7qjvbxPpEIOrPecBaNio.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Celebrations</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/surya-dubey.png" alt="Operations Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-ops"><i class="fas fa-cogs"></i> Operations Lead</div>
+                            <h4 class="lead-name">Surya Dubey</h4>
+                            <p class="lead-quote">"Executing with excellence"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQOPkrtCjpQLjgWZEC98WXGjGW_tKqJJc_9_ROws8ZAzqO58PA8GT0RoMwBt6aTD1qVCYx7C41BEHgP-y5-M-d4t1B_xjjToKXFnzx4.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Fun Times</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/jason.png" alt="Cultural Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-cultural"><i class="fas fa-music"></i> Cultural Lead</div>
+                            <h4 class="lead-name">Jason</h4>
+                            <p class="lead-quote">"Bringing art to life"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQPedUvuNbIz8sJfAFVTDFUpfGYwlwQ5mFF2z3AJ3HMc0_GFBugLYGvxxfZ6vH-r7LK6iT8ruVVb767616Vy9x8uiXD9jeYjCHLqtiM.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Memories</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/md-faiz.png" alt="Marketing Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-marketing"><i class="fas fa-bullhorn"></i> Marketing Lead</div>
+                            <h4 class="lead-name">Md Faiz</h4>
+                            <p class="lead-quote">"Spreading the word"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/retero rewind 1.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Retro Rewind</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/nithin.png" alt="Designing Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-design"><i class="fas fa-palette"></i> Designing Lead</div>
+                            <h4 class="lead-name">Nithin</h4>
+                            <p class="lead-quote">"Creating visual magic"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/retero rewind 2.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Retro Rewind Highlights</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/hareesh.png" alt="Technical Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-tech"><i class="fas fa-code"></i> Technical Lead</div>
+                            <h4 class="lead-name">Hareesh</h4>
+                            <p class="lead-quote">"Building the future"</p>
+                        </div>
+                    </div>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/aryan.png" alt="Content Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-content"><i class="fas fa-pen"></i> Content Lead</div>
+                            <h4 class="lead-name">Aryan</h4>
+                            <p class="lead-quote">"Words that inspire"</p>
+                        </div>
+                    </div>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/pranay.png" alt="Photography Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-photo"><i class="fas fa-camera"></i> Photography Lead</div>
+                            <h4 class="lead-name">Pranay</h4>
+                            <p class="lead-quote">"Capturing moments"</p>
+                        </div>
+                    </div>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/akhil.png" alt="Logistics Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-logistics"><i class="fas fa-truck"></i> Logistics Lead</div>
+                            <h4 class="lead-name">Akhil</h4>
+                            <p class="lead-quote">"Delivering excellence"</p>
                         </div>
                     </div>
                     <!-- Duplicate for seamless loop -->
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQMDs8T35wLWXaBsbONVx_VL3xAmJ-1zOSyp4oKJ-CkxrHEwznCXZWdATMh0V0-ILgqfRjFSpECe48U5c1oiCTyIk5CMjX-6FczPaII.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Event Highlights</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <div class="lead-photo-placeholder"><i class="fas fa-crown"></i></div>
+                            <div class="lead-photo-placeholder"><i class="fas fa-crown"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role role-founder"><i class="fas fa-crown"></i> Founder</div>
+                            <h4 class="lead-name">Karthik</h4>
+                            <p class="lead-quote">"The vision behind VisionX"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQMhFpnInzf2vvj3HLedgFfEApndWuenwP_JkgsYWarsWN0gzZ4PXS9UVlbTEu88fkCVYh-SB39DAwubrxrJ7kE51O7eoqjnTfzn478.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Campus Moments</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/rohan.png" alt="Event Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-calendar-check"></i> Event Lead</div>
+                            <h4 class="lead-name">Rohan Lingam</h4>
+                            <p class="lead-quote">"Making events memorable"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQMOGMuGhvBdHKtJCSVsXk5T_LS-5V1FUFgwsa3iG2P368pI8UJ1E840Rfk2RnqA7a8UDVVQj7zYDVU0VpL7qjvbxPpEIOrPecBaNio.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Celebrations</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/surya-dubey.png" alt="Operations Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-cogs"></i> Operations Lead</div>
+                            <h4 class="lead-name">Surya Dubey</h4>
+                            <p class="lead-quote">"Executing with excellence"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQOPkrtCjpQLjgWZEC98WXGjGW_tKqJJc_9_ROws8ZAzqO58PA8GT0RoMwBt6aTD1qVCYx7C41BEHgP-y5-M-d4t1B_xjjToKXFnzx4.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Fun Times</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/jason.png" alt="Cultural Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-music"></i> Cultural Lead</div>
+                            <h4 class="lead-name">Jason</h4>
+                            <p class="lead-quote">"Bringing art to life"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/SaveClip.App_AQPedUvuNbIz8sJfAFVTDFUpfGYwlwQ5mFF2z3AJ3HMc0_GFBugLYGvxxfZ6vH-r7LK6iT8ruVVb767616Vy9x8uiXD9jeYjCHLqtiM.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Memories</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/md-faiz.png" alt="Marketing Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-bullhorn"></i> Marketing Lead</div>
+                            <h4 class="lead-name">Md Faiz</h4>
+                            <p class="lead-quote">"Spreading the word"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/retero rewind 1.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Retro Rewind</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/nithin.png" alt="Designing Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-palette"></i> Designing Lead</div>
+                            <h4 class="lead-name">Nithin</h4>
+                            <p class="lead-quote">"Creating visual magic"</p>
                         </div>
                     </div>
-                    <div class="reel-item">
-                        <video
-                            src="photos/retero rewind 2.mp4"
-                            muted loop playsinline autoplay></video>
-                        <div class="reel-overlay">
-                            <span class="reel-title">Retro Rewind Highlights</span>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/hareesh.png" alt="Technical Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-code"></i> Technical Lead</div>
+                            <h4 class="lead-name">Hareesh</h4>
+                            <p class="lead-quote">"Building the future"</p>
+                        </div>
+                    </div>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/aryan.png" alt="Content Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-pen"></i> Content Lead</div>
+                            <h4 class="lead-name">Aryan</h4>
+                            <p class="lead-quote">"Words that inspire"</p>
+                        </div>
+                    </div>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/pranay.png" alt="Photography Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-camera"></i> Photography Lead</div>
+                            <h4 class="lead-name">Pranay</h4>
+                            <p class="lead-quote">"Capturing moments"</p>
+                        </div>
+                    </div>
+                    <div class="lead-card">
+                        <div class="lead-photo">
+                            <img src="photos/akhil.png" alt="Logistics Lead">
+                            <div class="lead-photo-placeholder"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="lead-info">
+                            <div class="lead-role"><i class="fas fa-truck"></i> Logistics Lead</div>
+                            <h4 class="lead-name">Akhil</h4>
+                            <p class="lead-quote">"Delivering excellence"</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Previous Events Gallery -->
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag"><i class="fas fa-play-circle"></i> Memories</span>
+                    <h2 class="section-title">Previous Events</h2>
+                    <p class="section-subtitle">Relive the magic of our past events</p>
+                </div>
+                <div class="reels-container">
+                    <div class="reels-track">
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQMDs8T35wLWXaBsbONVx_VL3xAmJ-1zOSyp4oKJ-CkxrHEwznCXZWdATMh0V0-ILgqfRjFSpECe48U5c1oiCTyIk5CMjX-6FczPaII.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Event Highlights</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQMhFpnInzf2vvj3HLedgFfEApndWuenwP_JkgsYWarsWN0gzZ4PXS9UVlbTEu88fkCVYh-SB39DAwubrxrJ7kE51O7eoqjnTfzn478.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Campus Moments</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQMOGMuGhvBdHKtJCSVsXk5T_LS-5V1FUFgwsa3iG2P368pI8UJ1E840Rfk2RnqA7a8UDVVQj7zYDVU0VpL7qjvbxPpEIOrPecBaNio.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Celebrations</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQOPkrtCjpQLjgWZEC98WXGjGW_tKqJJc_9_ROws8ZAzqO58PA8GT0RoMwBt6aTD1qVCYx7C41BEHgP-y5-M-d4t1B_xjjToKXFnzx4.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Fun Times</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQPedUvuNbIz8sJfAFVTDFUpfGYwlwQ5mFF2z3AJ3HMc0_GFBugLYGvxxfZ6vH-r7LK6iT8ruVVb767616Vy9x8uiXD9jeYjCHLqtiM.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Memories</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video src="photos/retero rewind 1.mp4" muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Retro Rewind</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video src="photos/retero rewind 2.mp4" muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Retro Rewind Highlights</span>
+                            </div>
+                        </div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQMDs8T35wLWXaBsbONVx_VL3xAmJ-1zOSyp4oKJ-CkxrHEwznCXZWdATMh0V0-ILgqfRjFSpECe48U5c1oiCTyIk5CMjX-6FczPaII.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Event Highlights</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQMhFpnInzf2vvj3HLedgFfEApndWuenwP_JkgsYWarsWN0gzZ4PXS9UVlbTEu88fkCVYh-SB39DAwubrxrJ7kE51O7eoqjnTfzn478.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Campus Moments</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQMOGMuGhvBdHKtJCSVsXk5T_LS-5V1FUFgwsa3iG2P368pI8UJ1E840Rfk2RnqA7a8UDVVQj7zYDVU0VpL7qjvbxPpEIOrPecBaNio.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Celebrations</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQOPkrtCjpQLjgWZEC98WXGjGW_tKqJJc_9_ROws8ZAzqO58PA8GT0RoMwBt6aTD1qVCYx7C41BEHgP-y5-M-d4t1B_xjjToKXFnzx4.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Fun Times</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video
+                                src="photos/SaveClip.App_AQPedUvuNbIz8sJfAFVTDFUpfGYwlwQ5mFF2z3AJ3HMc0_GFBugLYGvxxfZ6vH-r7LK6iT8ruVVb767616Vy9x8uiXD9jeYjCHLqtiM.mp4"
+                                muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Memories</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video src="photos/retero rewind 1.mp4" muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Retro Rewind</span>
+                            </div>
+                        </div>
+                        <div class="reel-item">
+                            <video src="photos/retero rewind 2.mp4" muted loop playsinline autoplay></video>
+                            <div class="reel-overlay">
+                                <span class="reel-title">Retro Rewind Highlights</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-    <!-- Countdown Section -->
+        <!-- Countdown Section -->
 
 
-    <!-- Footer -->
-    <footer class="footer" style="background:#12122a;color:#fff;padding:32px 0 18px 0;text-align:center;">
-        <div class="container">
-            <div class="footer-contact-header">Contact Admin</div>
-            <div class="footer-contact-row">
+        <!-- Footer -->
+        <footer class="footer" style="background:#12122a;color:#fff;padding:32px 0 18px 0;text-align:center;">
+            <div class="container">
+                <div class="footer-contact-header">Contact Admin</div>
+                <div class="footer-contact-row">
                     <a href="mailto:bagayithiharish@gmail.com" class="footer-contact-link email" title="Email">
                         <span class="footer-icon"><i class="fas fa-envelope"></i></span>
                         <span class="footer-link-label">Email</span>
-                </a>
-                    <a href="https://www.linkedin.com/in/hareesh-ai-dev/" target="_blank" class="footer-contact-link linkedin" title="LinkedIn">
+                    </a>
+                    <a href="https://www.linkedin.com/in/hareesh-ai-dev/" target="_blank"
+                        class="footer-contact-link linkedin" title="LinkedIn">
                         <span class="footer-icon"><i class="fab fa-linkedin"></i></span>
                         <span class="footer-link-label">LinkedIn</span>
-                </a>
+                    </a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 VisionX Club, Guru Nanak Institutions. <strong>All Rights Reserved HAREESH</strong>
+                    </p>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 VisionX Club, Guru Nanak Institutions. <strong>All Rights Reserved HAREESH</strong></p>
+        </footer>
+
+        <!-- ══ TICKET MODAL ══════════════════════════════════════════ -->
+        <div id="ticketModal" class="tkt-overlay" onclick="closeTicketModal(event)">
+            <div class="tkt-box">
+
+                <!-- Step 1: Form -->
+                <div id="tkt-step-form">
+                    <button class="tkt-close" onclick="closeTicketModalForce()"><i class="fas fa-times"></i></button>
+                    <div class="tkt-header">
+                        <div class="tkt-icon-ring"><i class="fas fa-ticket-alt"></i></div>
+                        <h2>Buy Your Ticket</h2>
+                        <p>Cultural Day Concert 2026 &nbsp;|&nbsp; ₹1</p>
+                        <span class="ticket-note">Limited Access Ticket – ₹1 only</span>
+                    </div>
+                    <div class="tkt-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Warning: Pay the exact amount . No refunds will be provided.</span>
+                    </div>
+                    <form id="ticketForm" onsubmit="handleTicketSubmit(event)">
+                        <div class="tkt-grid">
+                            <div class="tkt-field">
+                                <label>Full Name *</label>
+                                <input type="text" id="f-name" placeholder="Your full name" required>
+                            </div>
+                            <div class="tkt-field">
+                                <label>Email ID *</label>
+                                <input type="email" id="f-email" placeholder="youremail@gmail.com" required>
+                            </div>
+                            <div class="tkt-field">
+                                <label>Phone Number *</label>
+                                <input type="tel" id="f-phone" placeholder="10-digit mobile number" pattern="[0-9]{10}"
+                                    required>
+                            </div>
+                            <div class="tkt-field">
+                                <label>Roll No *</label>
+                                <input type="text" id="f-rollno" placeholder="Your roll number" required>
+                            </div>
+                            <div class="tkt-field">
+                                <label>College / Institution *</label>
+                                <input type="text" id="f-college" placeholder="Your college name" required>
+                            </div>
+                            <div class="tkt-field tkt-full">
+                                <label>Department *</label>
+                                <input type="text" id="f-dept" placeholder="e.g. CSE, ECE, MBA..." required>
+                            </div>
+                        </div>
+                        <div class="tkt-info-row">
+                            <i class="fas fa-shield-alt"></i>
+                            Payments secured by Razorpay. You will receive an email with your QR ticket.
+                        </div>
+                        <button type="submit" class="tkt-pay-btn" id="tkt-submit-btn">
+                            <i class="fas fa-lock"></i> Proceed to Pay ₹1
+                        </button>
+                        <p class="tkt-error" id="tkt-error"></p>
+                    </form>
+                </div>
+
+                <!-- Step 2: Processing -->
+                <div id="tkt-step-processing" style="display:none">
+                    <div class="tkt-centered">
+                        <div class="tkt-spinner"></div>
+                        <h3>Processing Payment…</h3>
+                        <p>Please do not close this window.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Success -->
+                <div id="tkt-step-success" style="display:none">
+                    <div class="tkt-centered">
+                        <div class="tkt-success-icon"><i class="fas fa-check"></i></div>
+                        <h3>Ticket Confirmed! 🎉</h3>
+                        <p id="tkt-success-email-msg">Your ticket has been sent to your email.<br>Check your inbox for
+                            the QR code.</p>
+                        <div class="tkt-tid" id="tkt-success-id"></div>
+                        <button class="tkt-pay-btn" style="margin-top:24px"
+                            onclick="closeTicketModalForce()">DONE</button>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </footer>
+        <!-- ══ END TICKET MODAL ══════════════════════════════════════ -->
 
-    <!-- ══ TICKET MODAL ══════════════════════════════════════════ -->
-    <div id="ticketModal" class="tkt-overlay" onclick="closeTicketModal(event)">
-      <div class="tkt-box">
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script src="script.js"></script>
 
-        <!-- Step 1: Form -->
-        <div id="tkt-step-form">
-          <button class="tkt-close" onclick="closeTicketModalForce()"><i class="fas fa-times"></i></button>
-          <div class="tkt-header">
-            <div class="tkt-icon-ring"><i class="fas fa-ticket-alt"></i></div>
-            <h2>Buy Your Ticket</h2>
-            <p>Cultural Day Concert 2026 &nbsp;|&nbsp; ₹1</p>
-            <span class="ticket-note">Limited Access Ticket – ₹1 only</span>
-          </div>
-          <div class="tkt-warning">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span>Warning: Pay the exact amount . No refunds will be provided.</span>
-          </div>
-          <form id="ticketForm" onsubmit="handleTicketSubmit(event)">
-            <div class="tkt-grid">
-              <div class="tkt-field">
-                <label>Full Name *</label>
-                <input type="text" id="f-name" placeholder="Your full name" required>
-              </div>
-              <div class="tkt-field">
-                <label>Email ID *</label>
-                <input type="email" id="f-email" placeholder="youremail@gmail.com" required>
-              </div>
-              <div class="tkt-field">
-                <label>Phone Number *</label>
-                <input type="tel" id="f-phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
-              </div>
-              <div class="tkt-field">
-                <label>Roll No *</label>
-                <input type="text" id="f-rollno" placeholder="Your roll number" required>
-              </div>
-              <div class="tkt-field">
-                <label>College / Institution *</label>
-                <input type="text" id="f-college" placeholder="Your college name" required>
-              </div>
-              <div class="tkt-field tkt-full">
-                <label>Department *</label>
-                <input type="text" id="f-dept" placeholder="e.g. CSE, ECE, MBA..." required>
-              </div>
-            </div>
-            <div class="tkt-info-row">
-              <i class="fas fa-shield-alt"></i>
-              Payments secured by Razorpay. You will receive an email with your QR ticket.
-            </div>
-            <button type="submit" class="tkt-pay-btn" id="tkt-submit-btn">
-              <i class="fas fa-lock"></i> Proceed to Pay ₹1
-            </button>
-            <p class="tkt-error" id="tkt-error"></p>
-          </form>
-        </div>
-
-        <!-- Step 2: Processing -->
-        <div id="tkt-step-processing" style="display:none">
-          <div class="tkt-centered">
-            <div class="tkt-spinner"></div>
-            <h3>Processing Payment…</h3>
-            <p>Please do not close this window.</p>
-          </div>
-        </div>
-
-        <!-- Step 3: Success -->
-        <div id="tkt-step-success" style="display:none">
-          <div class="tkt-centered">
-            <div class="tkt-success-icon"><i class="fas fa-check"></i></div>
-            <h3>Ticket Confirmed! 🎉</h3>
-            <p id="tkt-success-email-msg">Your ticket has been sent to your email.<br>Check your inbox for the QR code.</p>
-            <div class="tkt-tid" id="tkt-success-id"></div>
-            <button class="tkt-pay-btn" style="margin-top:24px" onclick="closeTicketModalForce()">DONE</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <!-- ══ END TICKET MODAL ══════════════════════════════════════ -->
-
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="script.js"></script>
-
-    <script>
-    // Professional nav: highlight active section
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sectionsObj = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollY = window.scrollY + 120;
-        sectionsObj.forEach((section, i) => {
-            if (section && section.offsetTop <= scrollY) {
-                current = navLinks[i].getAttribute('href');
-            }
-        });
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === current) link.classList.add('active');
-        });
-    });
-    </script>
+        <script>
+            // Professional nav: highlight active section
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sectionsObj = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const scrollY = window.scrollY + 120;
+                sectionsObj.forEach((section, i) => {
+                    if (section && section.offsetTop <= scrollY) {
+                        current = navLinks[i].getAttribute('href');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === current) link.classList.add('active');
+                });
+            });
+        </script>
 </body>
+
 </html>
