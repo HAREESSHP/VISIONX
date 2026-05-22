@@ -88,8 +88,12 @@ function initReels() {
         };
 
         // Click to toggle mute/unmute
-        item.addEventListener('click', function () {
+        item.addEventListener('click', function (e) {
+            e.preventDefault();
             video.muted = !video.muted;
+            if (!video.muted) {
+                video.volume = 1.0;
+            }
         });
     });
 }
