@@ -181,7 +181,7 @@
 }
 .autoexpo-videos {
     display: flex;
-    gap: 32px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
@@ -191,8 +191,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 1 300px;
-    max-width: 360px;
+    flex: 1 1 22%;
+    max-width: 300px;
 }
 .video-wrapper video {
     width: 100% !important;
@@ -2038,6 +2038,10 @@ section {
     justify-content: center;
     font-size: 5rem;
     color: rgba(255, 255, 255, 0.3);
+}
+
+.lead-photo img + .lead-photo-placeholder {
+    display: none;
 }
 
 .lead-info {
