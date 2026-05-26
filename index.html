@@ -266,7 +266,7 @@
 
     <!-- Summit Guests Section -->
     <section id="summit-guests" class="autoexpo-context"
-        style="background: linear-gradient(135deg, #13111c 0%, #1e1b4b 100%); padding: 80px 0; margin-top: 0; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+        style="background: linear-gradient(135deg, #13111c 0%, #1e1b4b 100%); padding: 40px 0; margin-top: 0; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
         <div class="container autoexpo-flex">
             <div class="autoexpo-left">
                 <div class="section-header">
@@ -297,6 +297,39 @@
                 </div>
             </div>
         </div>
+
+        <!-- Summit Reels -->
+        <div class="summit-reels-grid">
+            <div class="summit-reel-card">
+                <video id="summit-reel-1" src="photos/SUMMIT/SaveClip.App_AQM1gxnwshikSclDJSvn96WCjQgoRrqE78BY7JuKrYBNETAmUbsbtauxRzqVg3LS8sWAEUztVFtZ73MqRSN8gILHvUkAzweiVmgxmTM.mp4" autoplay loop muted playsinline></video>
+                <div class="summit-reel-overlay">
+                    <span class="summit-reel-title">Summit Insight</span>
+                    <button class="summit-audio-btn" onclick="toggleAudio('summit-reel-1', this)"><i class="fas fa-volume-mute"></i></button>
+                </div>
+            </div>
+            <div class="summit-reel-card">
+                <video id="summit-reel-2" src="photos/SUMMIT/SaveClip.App_AQMk-EOdBYHD5TuUebx8EW8KQA6qrDsnJTgOFSE0Rd5TVAl5uiqWGab-nkykSfOg5UCI31u0oHjRpzWT5wgeGomo5UUAmN8xCi7-3PQ.mp4" autoplay loop muted playsinline></video>
+                <div class="summit-reel-overlay">
+                    <span class="summit-reel-title">Guest Speaker</span>
+                    <button class="summit-audio-btn" onclick="toggleAudio('summit-reel-2', this)"><i class="fas fa-volume-mute"></i></button>
+                </div>
+            </div>
+            <div class="summit-reel-card">
+                <video id="summit-reel-3" src="photos/SUMMIT/SaveClip.App_AQPgluWFzSnDF8vtfC2S8vloDNSRmtwptsVViaorhmPul5ytFo8MJyHS3hgPD3jCeDuaaH9sMzSrN4e4luA3CmbTvddmp8cLtZUT8uk.mp4" autoplay loop muted playsinline></video>
+                <div class="summit-reel-overlay">
+                    <span class="summit-reel-title">Experience</span>
+                    <button class="summit-audio-btn" onclick="toggleAudio('summit-reel-3', this)"><i class="fas fa-volume-mute"></i></button>
+                </div>
+            </div>
+            <div class="summit-reel-card">
+                <video id="summit-reel-4" src="photos/SUMMIT/SaveClip.App_AQPX0dqCNPzwr-HTgCoreAXjtkVmCx2DD4_oioyRvXZ3X7BIEen23Jy7FwJmnKCpdhKsRHOkTcgCmq3bHxFNzmj7j3cWQotCY2vtsYc.mp4" autoplay loop muted playsinline></video>
+                <div class="summit-reel-overlay">
+                    <span class="summit-reel-title">Moments</span>
+                    <button class="summit-audio-btn" onclick="toggleAudio('summit-reel-4', this)"><i class="fas fa-volume-mute"></i></button>
+                </div>
+            </div>
+        </div>
+
         <script>
             const summitGalleryImages = [
                 'photos/SUMMIT/SaveClip.App_670569794_17889870198463131_403453027482370563_n.jpg',
@@ -643,56 +676,63 @@
                         </div>
                         <!-- Duplicate for seamless loop -->
                         <div class="reel-item">
-                            <video
+                            <video id="memories-video-8"
                                 src="photos/SaveClip.App_AQMDs8T35wLWXaBsbONVx_VL3xAmJ-1zOSyp4oKJ-CkxrHEwznCXZWdATMh0V0-ILgqfRjFSpECe48U5c1oiCTyIk5CMjX-6FczPaII.mp4"
                                 muted loop playsinline autoplay></video>
                             <div class="reel-overlay">
                                 <span class="reel-title">Event Highlights</span>
                             </div>
+                            <button class="audio-toggle" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;" onclick="toggleAudio('memories-video-8', this)"><i class="fas fa-volume-mute"></i></button>
                         </div>
                         <div class="reel-item">
-                            <video
+                            <video id="memories-video-9"
                                 src="photos/SaveClip.App_AQMhFpnInzf2vvj3HLedgFfEApndWuenwP_JkgsYWarsWN0gzZ4PXS9UVlbTEu88fkCVYh-SB39DAwubrxrJ7kE51O7eoqjnTfzn478.mp4"
                                 muted loop playsinline autoplay></video>
                             <div class="reel-overlay">
                                 <span class="reel-title">Campus Moments</span>
                             </div>
+                            <button class="audio-toggle" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;" onclick="toggleAudio('memories-video-9', this)"><i class="fas fa-volume-mute"></i></button>
                         </div>
                         <div class="reel-item">
-                            <video
+                            <video id="memories-video-10"
                                 src="photos/SaveClip.App_AQMOGMuGhvBdHKtJCSVsXk5T_LS-5V1FUFgwsa3iG2P368pI8UJ1E840Rfk2RnqA7a8UDVVQj7zYDVU0VpL7qjvbxPpEIOrPecBaNio.mp4"
                                 muted loop playsinline autoplay></video>
                             <div class="reel-overlay">
                                 <span class="reel-title">Celebrations</span>
                             </div>
+                            <button class="audio-toggle" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;" onclick="toggleAudio('memories-video-10', this)"><i class="fas fa-volume-mute"></i></button>
                         </div>
                         <div class="reel-item">
-                            <video
+                            <video id="memories-video-11"
                                 src="photos/SaveClip.App_AQOPkrtCjpQLjgWZEC98WXGjGW_tKqJJc_9_ROws8ZAzqO58PA8GT0RoMwBt6aTD1qVCYx7C41BEHgP-y5-M-d4t1B_xjjToKXFnzx4.mp4"
                                 muted loop playsinline autoplay></video>
                             <div class="reel-overlay">
                                 <span class="reel-title">Fun Times</span>
                             </div>
+                            <button class="audio-toggle" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;" onclick="toggleAudio('memories-video-11', this)"><i class="fas fa-volume-mute"></i></button>
                         </div>
                         <div class="reel-item">
-                            <video
+                            <video id="memories-video-12"
                                 src="photos/SaveClip.App_AQPedUvuNbIz8sJfAFVTDFUpfGYwlwQ5mFF2z3AJ3HMc0_GFBugLYGvxxfZ6vH-r7LK6iT8ruVVb767616Vy9x8uiXD9jeYjCHLqtiM.mp4"
                                 muted loop playsinline autoplay></video>
                             <div class="reel-overlay">
                                 <span class="reel-title">Memories</span>
                             </div>
+                            <button class="audio-toggle" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;" onclick="toggleAudio('memories-video-12', this)"><i class="fas fa-volume-mute"></i></button>
                         </div>
                         <div class="reel-item">
-                            <video src="photos/retero rewind 1.mp4" muted loop playsinline autoplay></video>
+                            <video id="memories-video-13" src="photos/retero rewind 1.mp4" muted loop playsinline autoplay></video>
                             <div class="reel-overlay">
                                 <span class="reel-title">Retro Rewind</span>
                             </div>
+                            <button class="audio-toggle" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;" onclick="toggleAudio('memories-video-13', this)"><i class="fas fa-volume-mute"></i></button>
                         </div>
                         <div class="reel-item">
-                            <video src="photos/retero rewind 2.mp4" muted loop playsinline autoplay></video>
+                            <video id="memories-video-14" src="photos/retero rewind 2.mp4" muted loop playsinline autoplay></video>
                             <div class="reel-overlay">
                                 <span class="reel-title">Retro Rewind Highlights</span>
                             </div>
+                            <button class="audio-toggle" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;" onclick="toggleAudio('memories-video-14', this)"><i class="fas fa-volume-mute"></i></button>
                         </div>
                     </div>
                 </div>

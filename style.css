@@ -253,17 +253,17 @@
 }
 .event-reels {
     background: linear-gradient(135deg, #18182f 60%, #23234a 100%);
-    padding: 60px 0 40px 0;
+    padding: 30px 0 20px 0;
     margin-top: 0;
     z-index: 1;
     position: relative;
 }
 .event-reels .section-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 .reels-section {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 .reels-title {
     color: #f97316;
@@ -334,15 +334,15 @@
    ============================= */
 .event-reels {
     background: linear-gradient(135deg, #18182f 60%, #23234a 100%);
-    padding: 60px 0 40px 0;
+    padding: 30px 0 20px 0;
     margin-top: 0;
 }
 .event-reels .section-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 .reels-section {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 .reels-title {
     color: #f97316;
@@ -605,7 +605,7 @@ ul {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 16px;
 }
 
 /* ============================================
@@ -1030,7 +1030,7 @@ ul {
    Section Common Styles
    ============================================ */
 section {
-    padding: 40px 0;
+    padding: 30px 0;
 }
 
 .section-header {
@@ -1055,6 +1055,12 @@ section {
     font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
 }
 
 .section-subtitle {
@@ -1541,7 +1547,7 @@ section {
    ============================================ */
 .director-section {
     position: relative;
-    padding: 60px 0;
+    padding: 30px 0;
     background-color: #fbfbfc;
     overflow: hidden;
 }
@@ -3029,7 +3035,7 @@ section {
    ============================================ */
 .gallery {
     background: linear-gradient(180deg, var(--bg-dark) 0%, #0f0f23 100%);
-    padding: 50px 0;
+    padding: 30px 0;
 }
 
 .gallery .section-tag {
@@ -3164,7 +3170,7 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 60px 15px 20px;
+    padding: 30px 15px 20px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     pointer-events: none;
 }
@@ -3309,7 +3315,7 @@ section {
     position: relative;
     background: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
     text-align: center;
-    padding: 60px 0;
+    padding: 30px 0;
 }
 
 .countdown-overlay {
@@ -3411,7 +3417,7 @@ section {
     display: grid;
     grid-template-columns: 2fr 1fr 1.5fr 1fr;
     gap: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .footer-logo {
@@ -3653,7 +3659,7 @@ section {
         width: 280px;
         background: var(--bg-darker);
         flex-direction: column;
-        padding: 100px 40px;
+        padding: 60px 40px;
         gap: 25px;
         transition: var(--transition);
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
@@ -3917,7 +3923,7 @@ section {
     }
 
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
         margin-bottom: 20px;
     }
 
@@ -3946,12 +3952,12 @@ section {
     }
 
     .time-block {
-        padding: 10px 8px;
-        min-width: 65px;
+        padding: 5px;
+        min-width: 50px;
     }
 
     .time-value {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .time-label {
@@ -4229,10 +4235,107 @@ section {
     .tkt-box  { padding: 28px 20px; }
 }
 
+.summit-reels-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 40px 20px 80px;
+    max-width: 1100px;
+    height: 550px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+@media (max-width: 768px) {
+    .summit-reels-grid {
+        flex-direction: column;
+        height: auto;
+        min-height: 800px;
+    }
+}
+
+.summit-reel-card {
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+    flex: 1;
+    background: #000;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.summit-reel-card:hover {
+    flex: 3;
+    box-shadow: 0 20px 50px rgba(236, 72, 153, 0.4);
+    transform: translateY(-10px);
+}
+
+.summit-reel-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+.summit-reel-card:hover video {
+    opacity: 1;
+}
+
+.summit-reel-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 40px 25px 25px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.summit-reel-card:hover .summit-reel-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.summit-reel-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    white-space: nowrap;
+}
+
+.summit-audio-btn {
+    background: rgba(255,255,255,0.2) !important;
+    border: 1px solid rgba(255,255,255,0.4) !important;
+    backdrop-filter: blur(8px);
+    color: white !important;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.summit-audio-btn:hover {
+    background: rgba(236, 72, 153, 0.8) !important;
+    border-color: rgba(236, 72, 153, 1) !important;
+    transform: scale(1.15);
+}
 
 .auto-expo-section {
     position: relative;
-    padding: 100px 0;
+    padding: 40px 0;
     background: #0a0a14;
     overflow: hidden;
 }
@@ -4600,7 +4703,7 @@ section {
 
 @media (max-width: 480px) {
     .auto-expo-section {
-        padding: 70px 0;
+        padding: 40px 0;
     }
 
     .auto-expo-title {
