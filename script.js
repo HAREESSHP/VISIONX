@@ -49,6 +49,10 @@ function initLeadPhotos() {
                 }
             } else {
                 img.style.display = 'none';
+                const placeholder = img.nextElementSibling;
+                if (placeholder) {
+                    placeholder.style.display = 'flex';
+                }
             }
         }
     });
