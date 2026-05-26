@@ -292,9 +292,11 @@ function initScrollReveal() {
    Additional Utility Functions
    ============================================ */
 
-// Add loading animation
+// Add loading animation with a smooth delay
 window.addEventListener('load', function () {
-    document.body.classList.add('loaded');
+    setTimeout(function () {
+        document.body.classList.add('loaded');
+    }, 800);
 });
 
 // Parallax effect for hero (optional - subtle)

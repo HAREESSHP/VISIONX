@@ -588,7 +588,7 @@ html, body {
 }
 
 /* ============================================
-   Full-Screen Loader
+   Full-Screen Loader - Premium Experience
    ============================================ */
 #loader-wrapper {
     position: fixed;
@@ -596,50 +596,203 @@ html, body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #12122a;
-    z-index: 99999;
+    background: #0b0a19;
+    z-index: 999999;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
+    overflow: hidden;
+    transition: opacity 0.8s cubic-bezier(0.77, 0, 0.175, 1), 
+                visibility 0.8s cubic-bezier(0.77, 0, 0.175, 1),
+                transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 body.loaded #loader-wrapper {
     opacity: 0;
     visibility: hidden;
+    transform: scale(1.08);
+}
+
+.loader-background {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle at center, 
+        rgba(99, 102, 241, 0.18) 0%, 
+        rgba(236, 72, 153, 0.08) 35%, 
+        rgba(11, 10, 25, 1) 70%
+    );
+    animation: loaderDrift 20s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .loader-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    z-index: 2;
+    padding: 40px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(0);
+    animation: loaderContentFloat 4s ease-in-out infinite;
 }
 
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 5px solid rgba(255, 255, 255, 0.1);
-    border-top-color: var(--primary-color, #6366f1);
+.logo-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.loader-logo {
+    width: 90px;
+    height: auto;
+    z-index: 3;
+    filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.6));
+    animation: loaderLogoPulse 2.5s ease-in-out infinite;
+}
+
+.loader-ring {
+    position: absolute;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    border: 3.5px solid transparent;
+    border-top-color: #6366f1;
+    border-bottom-color: #ec4899;
+    animation: loaderSpin 1.4s cubic-bezier(0.53, 0.21, 0.29, 0.67) infinite;
+    z-index: 2;
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
+}
+
+.loader-ring-outer {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+    border-left-color: #06b6d4;
+    border-right-color: #10b981;
+    animation: loaderSpinReverse 2.8s linear infinite;
+    z-index: 1;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.3));
+}
+
+.loader-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
 }
 
 .loader-text {
-    font-size: 1.2rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    color: #fff;
-    animation: pulse 1.5s ease-in-out infinite;
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 8px;
+    background: linear-gradient(90deg, #6366f1, #ec4899, #06b6d4, #6366f1);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.35));
+    text-transform: uppercase;
+    animation: loaderTextShine 4s linear infinite;
+    margin-left: 8px;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+.loader-subtext {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: loaderSubtextPulse 2s ease-in-out infinite;
+    margin-left: 5px;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+.loader-progress-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 32px;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.loader-progress-fill {
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(90deg, #6366f1, #ec4899, #06b6d4);
+    border-radius: 10px;
+    position: absolute;
+    left: -40%;
+    animation: loaderProgressAnim 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
+}
+
+/* Animations */
+@keyframes loaderSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes loaderSpinReverse {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes loaderLogoPulse {
+    0%, 100% { 
+        transform: scale(0.96); 
+        filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.45)); 
+    }
+    50% { 
+        transform: scale(1.04); 
+        filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.75)); 
+    }
+}
+
+@keyframes loaderDrift {
+    0% { transform: translate(-10%, -10%) rotate(0deg) scale(1); }
+    100% { transform: translate(10%, 10%) rotate(180deg) scale(1.2); }
+}
+
+@keyframes loaderContentFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes loaderTextShine {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+@keyframes loaderSubtextPulse {
+    0%, 100% { opacity: 0.5; letter-spacing: 5px; }
+    50% { opacity: 0.95; letter-spacing: 5.5px; }
+}
+
+@keyframes loaderProgressAnim {
+    0% { left: -40%; width: 25%; }
+    50% { width: 50%; }
+    100% { left: 100%; width: 25%; }
 }
 
 /* Utility Classes */
