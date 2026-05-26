@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize all functions
+    initPreloader();
     initNavbar();
     initMobileMenu();
     initSmoothScroll();
@@ -293,15 +294,96 @@ function initScrollReveal() {
 }
 
 /* ============================================
-   Additional Utility Functions
+   Preloader - Accurate Asset Loading (Photos & Reels)
    ============================================ */
+function initPreloader() {
+    const loaderWrapper = document.getElementById('loader-wrapper');
+    const progressFill = document.querySelector('.loader-progress-fill');
+    const percentageText = document.querySelector('.loader-percentage');
 
-// Add loading animation with a smooth delay
-window.addEventListener('load', function () {
-    setTimeout(function () {
+    if (!loaderWrapper) return;
+
+    // Get all images (except those inside the loader itself) and all videos on the page
+    const images = Array.from(document.querySelectorAll('img')).filter(img => !img.closest('#loader-wrapper'));
+    const videos = Array.from(document.querySelectorAll('video'));
+
+    const totalAssets = images.length + videos.length;
+    let loadedAssets = 0;
+    let isFinished = false;
+
+    // Safety timeout: auto-reveal the site in case an asset hangs indefinitely (e.g. slow connection)
+    const safetyTimeout = setTimeout(() => {
+        finishLoading();
+    }, 10000); // 10 seconds limit
+
+    function updateProgress() {
+        if (isFinished) return;
+
+        loadedAssets++;
+        const percent = Math.min(Math.round((loadedAssets / totalAssets) * 100), 100);
+
+        if (progressFill) {
+            progressFill.style.width = percent + '%';
+        }
+
+        if (percentageText) {
+            percentageText.textContent = percent + '%';
+        }
+
+        if (loadedAssets >= totalAssets) {
+            clearTimeout(safetyTimeout);
+            // Smooth reveal transition delay
+            setTimeout(finishLoading, 600);
+        }
+    }
+
+    function finishLoading() {
+        if (isFinished) return;
+        isFinished = true;
+
+        if (progressFill) {
+            progressFill.style.width = '100%';
+        }
+        if (percentageText) {
+            percentageText.textContent = '100%';
+        }
+
+        // Add class to trigger CSS fade-out transition
         document.body.classList.add('loaded');
-    }, 800);
-});
+
+        // Clean up the preloader from the DOM for performance once hidden
+        setTimeout(() => {
+            if (loaderWrapper.parentNode) {
+                loaderWrapper.parentNode.removeChild(loaderWrapper);
+            }
+        }, 1000);
+    }
+
+    if (totalAssets === 0) {
+        finishLoading();
+        return;
+    }
+
+    // Monitor Images
+    images.forEach(img => {
+        if (img.complete && img.naturalHeight > 0) {
+            updateProgress();
+        } else {
+            img.addEventListener('load', updateProgress);
+            img.addEventListener('error', updateProgress);
+        }
+    });
+
+    // Monitor Videos
+    videos.forEach(video => {
+        if (video.readyState >= 2) {
+            updateProgress();
+        } else {
+            video.addEventListener('loadeddata', updateProgress);
+            video.addEventListener('error', updateProgress);
+        }
+    });
+}
 
 // Parallax effect for hero (optional - subtle)
 window.addEventListener('scroll', function () {
