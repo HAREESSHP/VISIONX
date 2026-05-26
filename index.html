@@ -238,7 +238,7 @@
                     });
 
                     // Set all other toggle icons on the page to muted
-                    document.querySelectorAll('.reel-audio-toggle i, .audio-toggle i').forEach(icon => {
+                    document.querySelectorAll('.reel-audio-toggle i, .audio-toggle i, .summit-audio-btn i').forEach(icon => {
                         icon.className = 'fas fa-volume-mute';
                     });
 
@@ -251,36 +251,6 @@
                 }
             }
         </script>
-        </div>
-        </div>
-    </section>
-    <script>
-        function toggleAudio(videoId, btn) {
-            const video = document.getElementById(videoId);
-            const wasMuted = video.muted;
-
-            if (wasMuted) {
-                // Mute all video elements on the entire page
-                document.querySelectorAll('video').forEach(vid => {
-                    if (vid !== video) {
-                        vid.muted = true;
-                    }
-                });
-
-                // Set all other toggle icons on the page to muted
-                document.querySelectorAll('.reel-audio-toggle i, .audio-toggle i').forEach(icon => {
-                    icon.className = 'fas fa-volume-mute';
-                });
-
-                video.muted = false;
-                video.volume = 1.0;
-                btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            } else {
-                video.muted = true;
-                btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            }
-        }
-    </script>
     </section>
 
     <!-- Summit Guests Section -->
@@ -763,23 +733,65 @@
 
 
         <!-- Footer -->
-        <footer class="footer" style="background:#12122a;color:#fff;padding:32px 0 18px 0;text-align:center;">
+        <footer class="footer-new">
             <div class="container">
-                <div class="footer-contact-header">Contact Admin</div>
-                <div class="footer-contact-row">
-                    <a href="mailto:bagayithiharish@gmail.com" class="footer-contact-link email" title="Email">
-                        <span class="footer-icon"><i class="fas fa-envelope"></i></span>
-                        <span class="footer-link-label">Email</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/hareesh-ai-dev/" target="_blank"
-                        class="footer-contact-link linkedin" title="LinkedIn">
-                        <span class="footer-icon"><i class="fab fa-linkedin"></i></span>
-                        <span class="footer-link-label">LinkedIn</span>
-                    </a>
+                <div class="footer-top-banner">
+                    Creativity &bull; Innovation &bull; Leadership &bull; Collaboration
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2026 VisionX Club, Guru Nanak Institutions. <strong>All Rights Reserved HAREESH</strong>
-                    </p>
+                
+                <div class="footer-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <div class="footer-logo-card">
+                            <img src="photos/visionx-logo.png" alt="VisionX Logo">
+                        </div>
+                        <p class="footer-brand-desc">
+                            VisionX is a dynamic, student-driven club at Guru Nanak Institutions committed to creating impactful and memorable campus experiences.
+                        </p>
+                    </div>
+
+                    <!-- Contact Column -->
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <div class="footer-contact-list">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span><a href="tel:+919019857285">+91 90198 57285</a></span>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span><a href="mailto:bagayithiharish@gmail.com">bagayithiharish@gmail.com</a></span>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Guru Nanak Institutions, Ibrahimpatnam, RR District, Hyderabad, Telangana 501506</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Follow Us Column -->
+                    <div class="footer-col">
+                        <h4>Follow Us</h4>
+                        <div class="footer-social-wrapper">
+                            <div class="footer-social-row">
+                                <a href="https://www.linkedin.com/in/hareesh-ai-dev/" target="_blank" class="footer-social-btn" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://www.instagram.com/visionx.gni/" target="_blank" class="footer-social-btn" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                            <p class="footer-social-desc">
+                                Stay updated with new events, announcements, and club activities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Copyright and Credits -->
+                <div class="footer-bottom-new">
+                    <p class="designed-by">Designed & developed by <a href="https://www.linkedin.com/in/hareesh-ai-dev/" target="_blank">HAREESH</a></p>
+                    <p class="copyright">&copy; 2026 VisionX Club, Guru Nanak Institutions. All rights reserved.</p>
                 </div>
             </div>
         </footer>

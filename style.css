@@ -4983,3 +4983,466 @@ section {
         flex-direction: column;
     }
 }
+
+/* ==========================================================================
+   VisionX Mobile Responsive Polishing (Auto Expo and Summit Sections)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* 1. Containers and Layout Context */
+    .autoexpo-flex {
+        flex-direction: column !important;
+        gap: 24px !important;
+        padding: 0 16px !important;
+        text-align: center;
+    }
+    
+    .autoexpo-left, .autoexpo-right {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 1 1 100% !important;
+        margin: 0 !important;
+    }
+
+    .autoexpo-description {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.85);
+        text-align: left;
+        margin-top: 12px;
+        padding: 0 4px;
+    }
+    
+    .autoexpo-left .section-header {
+        text-align: center !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* 2. Gallery Wrapper & Absolute Button Overlays (Auto Expo & Summit) */
+    .autoexpo-album {
+        justify-content: center !important;
+        width: 100% !important;
+        margin-bottom: 0 !important;
+    }
+
+    .gallery-wrapper.big-gallery {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 480px;
+        margin: 0 auto 20px !important;
+        display: block !important; /* Switch from flex to block to allow absolute overlays */
+        aspect-ratio: 4/3;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    /* The gallery images should fill the container */
+    .main-img.big-img.move-left {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        object-fit: cover !important;
+        display: block;
+        min-height: unset !important;
+    }
+
+    /* Chevron Gallery buttons as sleek floating overlays */
+    .gallery-wrapper.big-gallery .gallery-btn {
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 10 !important;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.25rem !important;
+        background: rgba(24, 24, 47, 0.75) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+        color: #fff !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .gallery-wrapper.big-gallery .gallery-prev {
+        left: 12px !important;
+    }
+
+    .gallery-wrapper.big-gallery .gallery-next {
+        right: 12px !important;
+    }
+
+    /* 3. Auto Expo Reels (Horizontal Swipe) */
+    .autoexpo-videos.big-videos.section-center-videos {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 16px !important;
+        padding: 10px 16px 24px !important;
+        margin-top: 24px !important;
+        scroll-snap-type: x mandatory !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Hide scrollbars for Auto Expo reels */
+    .autoexpo-videos.big-videos.section-center-videos::-webkit-scrollbar {
+        display: none !important;
+    }
+    .autoexpo-videos.big-videos.section-center-videos {
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE 10+ */
+    }
+
+    .autoexpo-videos.big-videos.section-center-videos .video-wrapper {
+        flex: 0 0 240px !important;
+        max-width: 240px !important;
+        width: 240px !important;
+        scroll-snap-align: start !important;
+        margin: 0 !important;
+    }
+
+    .autoexpo-videos.big-videos.section-center-videos .video-wrapper video {
+        width: 100% !important;
+        height: 420px !important;
+        min-height: unset !important;
+        aspect-ratio: 9/16 !important;
+        object-fit: cover !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25) !important;
+    }
+
+    /* 4. Summit Section Reels (Horizontal Swipe & High Visibility) */
+    .summit-reels-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 16px !important;
+        padding: 10px 16px 24px !important;
+        margin: 24px auto 0 !important;
+        scroll-snap-type: x mandatory !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: unset !important;
+        box-sizing: border-box !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Hide scrollbars for Summit reels */
+    .summit-reels-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+    .summit-reels-grid {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
+    .summit-reel-card {
+        flex: 0 0 240px !important;
+        max-width: 240px !important;
+        width: 240px !important;
+        height: 420px !important;
+        scroll-snap-align: start !important;
+        border-radius: 20px !important;
+        transform: none !important;
+        margin: 0 !important;
+    }
+
+    /* Ensure cards do not grow/jump on hover/tap in mobile */
+    .summit-reel-card:hover {
+        flex: 0 0 240px !important;
+        transform: none !important;
+        box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3) !important;
+    }
+
+    .summit-reel-card video {
+        opacity: 0.95 !important; /* Bright and clear by default */
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* Always display the overlay (mute button and speaker name) on mobile */
+    .summit-reel-overlay {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        padding: 20px 12px 12px !important;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%) !important;
+    }
+
+    .summit-reel-title {
+        font-size: 1.05rem !important;
+        white-space: normal !important; /* Wrap long titles if necessary */
+    }
+
+    .summit-audio-btn {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 0.95rem !important;
+    }
+}
+
+/* ==========================================================================
+   VisionX Modern Premium Footer (Infranex Style)
+   ========================================================================== */
+.footer-new {
+    background: #090815 !important; /* Deep rich dark background matching screenshot */
+    color: #ffffff !important;
+    padding: 60px 0 30px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    font-family: 'Poppins', sans-serif !important;
+    margin-top: 0 !important;
+}
+
+.footer-new .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-top-banner {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 24px;
+    margin-bottom: 45px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+/* Brand Column */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.footer-logo-card {
+    background: #ffffff;
+    padding: 12px 20px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.footer-logo-card img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-brand-desc {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    max-width: 320px;
+    margin: 0 !important;
+}
+
+/* Headers */
+.footer-col h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+/* Contact Column */
+.footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.footer-contact-item i {
+    color: #38bdf8 !important; /* Cyan-blue color from screenshot */
+    font-size: 1.05rem;
+    margin-top: 3px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.footer-contact-item span {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: left;
+}
+
+.footer-contact-item a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-contact-item a:hover {
+    color: #38bdf8;
+}
+
+/* Follow Us Column */
+.footer-social-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.footer-social-row {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.15rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.footer-social-btn:hover {
+    background: rgba(56, 189, 248, 0.08);
+    border-color: #38bdf8;
+    color: #38bdf8;
+    transform: translateY(-2px);
+}
+
+.footer-social-desc {
+    color: rgba(255, 255, 255, 0.45) !important;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+    max-width: 240px;
+    margin: 0 !important;
+    text-align: left;
+}
+
+/* Bottom Bar */
+.footer-bottom-new {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 24px;
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-bottom-new .designed-by {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55) !important;
+    margin: 0 !important;
+}
+
+.footer-bottom-new .designed-by a {
+    color: #38bdf8;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+    padding-bottom: 1px;
+    transition: all 0.2s ease;
+}
+
+.footer-bottom-new .designed-by a:hover {
+    color: #56cbf9;
+    border-color: #56cbf9;
+}
+
+.footer-bottom-new .copyright {
+    font-size: 0.76rem !important;
+    color: rgba(255, 255, 255, 0.35) !important;
+    margin: 0 !important;
+}
+
+/* Responsive grid */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-new {
+        padding: 40px 0 25px !important;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .footer-brand, .footer-col, .footer-social-wrapper {
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-logo-card {
+        margin: 0 auto;
+    }
+
+    .footer-brand-desc {
+        max-width: 100%;
+    }
+
+    .footer-contact-list {
+        align-items: center;
+    }
+
+    .footer-contact-item {
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .footer-contact-item i {
+        margin-top: 0;
+    }
+
+    .footer-social-row {
+        justify-content: center;
+    }
+
+    .footer-social-desc {
+        max-width: 100%;
+        text-align: center;
+    }
+}
