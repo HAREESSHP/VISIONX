@@ -5401,48 +5401,94 @@ section {
 
 @media (max-width: 600px) {
     .footer-new {
-        padding: 40px 0 25px !important;
+        padding: 34px 0 20px !important;
+    }
+
+    .footer-new .container {
+        padding: 0 16px;
     }
     
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 35px;
+        gap: 14px;
     }
     
     .footer-brand, .footer-col, .footer-social-wrapper {
-        text-align: center;
-        align-items: center;
+        text-align: left;
+        align-items: stretch;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 18px;
+        padding: 18px 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(8px);
     }
 
     .footer-logo-card {
-        margin: 0 auto;
+        margin: 0 0 6px;
     }
 
     .footer-brand-desc {
         max-width: 100%;
+        text-align: left;
+        font-size: 0.88rem !important;
+    }
+
+    .footer-col h4 {
+        margin-bottom: 14px;
+        font-size: 0.8rem;
+        letter-spacing: 1.8px;
     }
 
     .footer-contact-list {
-        align-items: center;
+        align-items: stretch;
+        gap: 12px;
     }
 
     .footer-contact-item {
-        justify-content: center;
-        text-align: center;
-        flex-direction: column;
-        gap: 6px;
+        justify-content: flex-start;
+        text-align: left;
+        flex-direction: row;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.025);
     }
 
     .footer-contact-item i {
-        margin-top: 0;
+        margin-top: 1px;
+        width: 18px;
     }
 
     .footer-social-row {
         justify-content: center;
+        gap: 14px;
+    }
+
+    .footer-social-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
     }
 
     .footer-social-desc {
         max-width: 100%;
         text-align: center;
+        font-size: 0.84rem !important;
+    }
+
+    .footer-bottom-new {
+        padding-top: 18px;
+        margin-top: 14px;
+    }
+
+    .footer-bottom-new .designed-by {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    .footer-bottom-new .copyright {
+        font-size: 0.72rem !important;
+        line-height: 1.5;
     }
 }
