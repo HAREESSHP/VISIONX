@@ -591,6 +591,26 @@ function showTktStep(step) {
     document.getElementById('tkt-step-success').style.display    = step === 'success'    ? 'block' : 'none';
 }
 
+async function readApiResponse(response) {
+    const contentType = response.headers.get('content-type') || '';
+
+    if (contentType.includes('application/json')) {
+        return await response.json();
+    }
+
+    const text = await response.text();
+
+    if (!text) {
+        return {};
+    }
+
+    try {
+        return JSON.parse(text);
+    } catch {
+        return { error: text };
+    }
+}
+
 /* ============================================
    Ticket Form Submit — Create Order → Razorpay
    ============================================ */
@@ -620,7 +640,7 @@ async function handleTicketSubmit(e) {
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify(payload)
         });
-        const data = await res.json();
+        const data = await readApiResponse(res);
 
         if (!res.ok) throw new Error(data.error || 'Order creation failed');
 
@@ -660,7 +680,7 @@ async function handleTicketSubmit(e) {
                             ticketId:            data.ticketId
                         })
                     });
-                    const vData = await vRes.json();
+                    const vData = await readApiResponse(vRes);
                     if (!vRes.ok) throw new Error(vData.error || 'Verification failed');
 
                     // 4. Show success

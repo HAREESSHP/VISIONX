@@ -89,12 +89,29 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+function requireEnvVars(res, keys) {
+  const missing = keys.filter((key) => !process.env[key]);
+
+  if (missing.length > 0) {
+    res.status(500).json({
+      error: `Missing server config: ${missing.join(', ')}`
+    });
+    return true;
+  }
+
+  return false;
+}
+
 /* =============================================
    ROUTE: POST /api/create-order
    Creates Razorpay order + pending ticket
    ============================================= */
 app.post('/api/create-order', async (req, res) => {
   try {
+    if (requireEnvVars(res, ['MONGODB_URI', 'RAZORPAY_KEY_ID', 'RAZORPAY_KEY_SECRET'])) {
+      return;
+    }
+
     const { name, rollno, email, phone, college, department } = req.body;
 
     if (!name || !rollno || !email || !phone || !college || !department) {
@@ -152,6 +169,10 @@ app.post('/api/create-order', async (req, res) => {
    ============================================= */
 app.post('/api/verify-payment', async (req, res) => {
   try {
+    if (requireEnvVars(res, ['MONGODB_URI', 'RAZORPAY_KEY_SECRET', 'EMAIL_USER', 'EMAIL_PASS', 'BASE_URL'])) {
+      return;
+    }
+
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, ticketId } = req.body;
 
     // Verify HMAC signature
