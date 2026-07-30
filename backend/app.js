@@ -45,6 +45,10 @@ app.use(express.static(path.join(__dirname, '..')));   // serve frontend
 let cachedDb = null;
 async function connectToDatabase() {
   if (cachedDb) return cachedDb;
+  if (!process.env.MONGODB_URI) {
+    console.warn('⚠️ MONGODB_URI is not set; skipping MongoDB connection until it is configured.');
+    return null;
+  }
   const db = await mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -54,7 +58,18 @@ async function connectToDatabase() {
   cachedDb = db;
   return db;
 }
-connectToDatabase().catch(err => console.error('❌ DB Error:', err));
+
+async function requireDatabase(res, options = {}) {
+  const db = await connectToDatabase();
+  if (db) return db;
+
+  if (options.html) {
+    res.status(500).send('<h1>Server Error</h1><p>Missing server config: MONGODB_URI</p>');
+  } else {
+    res.status(500).json({ error: 'Missing server config: MONGODB_URI' });
+  }
+  return null;
+}
 
 // ── Ticket Schema ─────────────────────────────
 const ticketSchema = new mongoose.Schema({
@@ -72,7 +87,7 @@ const ticketSchema = new mongoose.Schema({
   scanned:    { type: Boolean, default: false },
   createdAt:  { type: Date, default: Date.now }
 });
-const Ticket = mongoose.model('Ticket', ticketSchema);
+const Ticket = mongoose.models.Ticket || mongoose.model('Ticket', ticketSchema);
 
 // ── Razorpay Instance ─────────────────────────
 const razorpay = new Razorpay({
@@ -108,7 +123,11 @@ function requireEnvVars(res, keys) {
    ============================================= */
 app.post('/api/create-order', async (req, res) => {
   try {
-    if (requireEnvVars(res, ['MONGODB_URI', 'RAZORPAY_KEY_ID', 'RAZORPAY_KEY_SECRET'])) {
+    if (requireEnvVars(res, ['RAZORPAY_KEY_ID', 'RAZORPAY_KEY_SECRET'])) {
+      return;
+    }
+
+    if (!(await requireDatabase(res))) {
       return;
     }
 
@@ -169,7 +188,11 @@ app.post('/api/create-order', async (req, res) => {
    ============================================= */
 app.post('/api/verify-payment', async (req, res) => {
   try {
-    if (requireEnvVars(res, ['MONGODB_URI', 'RAZORPAY_KEY_SECRET', 'EMAIL_USER', 'EMAIL_PASS', 'BASE_URL'])) {
+    if (requireEnvVars(res, ['RAZORPAY_KEY_SECRET', 'EMAIL_USER', 'EMAIL_PASS', 'BASE_URL'])) {
+      return;
+    }
+
+    if (!(await requireDatabase(res))) {
       return;
     }
 
@@ -222,6 +245,10 @@ app.post('/api/verify-payment', async (req, res) => {
    ============================================= */
 app.get('/ticket/:ticketId', async (req, res) => {
   try {
+    if (!(await requireDatabase(res, { html: true }))) {
+      return;
+    }
+
     const ticket = await Ticket.findOne({ ticketId: req.params.ticketId });
     if (!ticket)            return res.status(404).send(scanHTML({ valid: false, reason: 'not_found' }));
     if (ticket.status !== 'COMPLETED' && ticket.status !== 'PAID_PENDING_TICKET') {
@@ -248,6 +275,10 @@ app.get('/admin', (req, res) => {
    ROUTE: GET /api/admin/tickets   (protected)
    ============================================= */
 app.get('/api/admin/tickets', requireAdmin, async (req, res) => {
+  if (!(await requireDatabase(res))) {
+    return;
+  }
+
   const tickets = await Ticket.find().sort({ createdAt: -1 });
   res.json(tickets);
 });
@@ -256,6 +287,10 @@ app.get('/api/admin/tickets', requireAdmin, async (req, res) => {
    ROUTE: GET /api/admin/stats     (protected)
    ============================================= */
 app.get('/api/admin/stats', requireAdmin, async (req, res) => {
+  if (!(await requireDatabase(res))) {
+    return;
+  }
+
   const [completed, scanned, initiated, paidPending, revenueResult] = await Promise.all([
     Ticket.countDocuments({ status: { $in: ['COMPLETED', 'paid'] } }),
     Ticket.countDocuments({ scanned: true }),
@@ -276,6 +311,10 @@ app.get('/api/admin/stats', requireAdmin, async (req, res) => {
    ============================================= */
 app.post('/api/admin/approve-ticket', requireAdmin, async (req, res) => {
   try {
+    if (!(await requireDatabase(res))) {
+      return;
+    }
+
     const { ticketId } = req.body;
     const ticket = await Ticket.findOneAndUpdate(
       { ticketId, status: { $in: ['INITIATED', 'pending'] } },
@@ -311,6 +350,10 @@ app.post('/api/admin/approve-ticket', requireAdmin, async (req, res) => {
    ============================================= */
 app.post('/api/admin/manual-register', requireAdmin, async (req, res) => {
   try {
+    if (!(await requireDatabase(res))) {
+      return;
+    }
+
     const { name, rollno, email, phone, college, department } = req.body;
 
     if (!name || !rollno || !email || !phone || !college || !department) {
@@ -354,6 +397,10 @@ app.post('/api/admin/manual-register', requireAdmin, async (req, res) => {
    ============================================= */
 app.post('/api/admin/delete-ticket', requireAdmin, async (req, res) => {
   try {
+    if (!(await requireDatabase(res))) {
+      return;
+    }
+
     const { ticketId } = req.body;
     const ticket = await Ticket.findOneAndDelete({ ticketId });
 
@@ -372,6 +419,10 @@ app.post('/api/admin/delete-ticket', requireAdmin, async (req, res) => {
    ============================================= */
 app.post('/api/admin/resend-email', requireAdmin, async (req, res) => {
   try {
+    if (!(await requireDatabase(res))) {
+      return;
+    }
+
     const { ticketId } = req.body;
     const ticket = await Ticket.findOne({ 
       ticketId, 
@@ -556,8 +607,8 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0a0a14,
 
 // ── Start Server ──────────────────────────────
 const PORT = process.env.PORT || 5500;
-// Only listen fully when NOT running in Serverless/Vercel environments
-if (process.env.VERCEL !== '1') {
+// Only listen when this file is launched directly.
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`\n🚀  VisionX Server → http://localhost:${PORT}`);
     console.log(`🎟  Ticket scan  → http://localhost:${PORT}/ticket/:id`);
